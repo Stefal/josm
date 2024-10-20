@@ -14,3 +14,4 @@
 /resources/data/projection/
 /src/org/openstreetmap/josm/gui/mappaint/mapcss/parsergen/
 /tools/ivy/
+/target/
