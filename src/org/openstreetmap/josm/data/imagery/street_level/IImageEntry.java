@@ -224,7 +224,14 @@ public interface IImageEntry<I extends IImageEntry<I>> {
      * @return The image camera angle
      */
     Double getExifImgDir();
-
+    
+    /**
+     * Returns the image horizontal positionning error. The image positionning error
+     * from the temporary copy is returned if that copy exists.
+     * @return the image horizontal positionning error
+     */
+    Double getExifHPosErr();
+    
     /**
      * Convenient way to determine if this entry has a EXIF time, without the cost of building a defensive copy.
      * @return {@code true} if this entry has a EXIF time

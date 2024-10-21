@@ -128,6 +128,12 @@ public interface ImageMetadata {
     Double getExifImgDir();
 
     /**
+     * Get the exif Horizontal positioning error
+     * @return The image horizontal positioning error
+     */
+    Double getExifHPosErr();
+
+    /**
      * Get the last time the source was modified
      * @return The last time the source was modified
      */
@@ -193,16 +199,22 @@ public interface ImageMetadata {
     void setGpsTime(Instant gpsTime);
 
     /**
-     * Set the exif coordinates
+     * Sets the exif coordinates
      * @param exifCoor The exif coordinates
      */
     void setExifCoor(ILatLon exifCoor);
 
     /**
-     * Set the exif direction
+     * Sets the exif direction
      * @param exifDir The direction
      */
     void setExifImgDir(Double exifDir);
+
+    /**
+     * Sets the exif horizontal positioning error
+     * @param exifHposErr 
+     */
+    void setExifHPosErr(Double exifHPosErr);
 
     /**
      * Sets the IPTC caption.

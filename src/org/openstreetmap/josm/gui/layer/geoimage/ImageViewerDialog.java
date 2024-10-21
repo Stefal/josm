@@ -1002,6 +1002,9 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
         if (entry.getExifImgDir() != null) {
             osd.append(tr("\nDirection {0}\u00b0", Math.round(entry.getExifImgDir())));
         }
+        if (entry.getExifHPosErr() != null) {
+            osd.append(tr("\nHpos errror: {0}m", entry.getExifHPosErr()));
+        }
 
         DateTimeFormatter dtf = DateUtils.getDateTimeFormatter(FormatStyle.SHORT, FormatStyle.MEDIUM)
                 // Set timezone to UTC since UTC is assumed when parsing the EXIF timestamp,

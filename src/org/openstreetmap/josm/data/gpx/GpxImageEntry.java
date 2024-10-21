@@ -1,6 +1,8 @@
 // License: GPL. For details, see LICENSE file.
 package org.openstreetmap.josm.data.gpx;
 
+import static org.openstreetmap.josm.tools.I18n.tr;
+
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -22,6 +24,7 @@ import org.openstreetmap.josm.data.coor.LatLon;
 import org.openstreetmap.josm.data.imagery.street_level.Projections;
 import org.openstreetmap.josm.data.osm.BBox;
 import org.openstreetmap.josm.gui.layer.geoimage.ImageMetadata;
+import org.openstreetmap.josm.tools.Logging;
 
 /**
  * Stores info about each image
@@ -32,6 +35,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     private Integer exifOrientation;
     private LatLon exifCoor;
     private Double exifImgDir;
+    private Double exifHPosErr;
     private Instant exifTime;
     private Projections cameraProjection = Projections.UNKNOWN;
     /**
@@ -88,6 +92,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
         exifOrientation = other.exifOrientation;
         exifCoor = other.exifCoor;
         exifImgDir = other.exifImgDir;
+        exifHPosErr = other.exifHPosErr;
         exifTime = other.exifTime;
         isNewGpsData = other.isNewGpsData;
         exifGpsTime = other.exifGpsTime;
@@ -274,6 +279,13 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     @Override
+    public Double getExifHPosErr() {
+        if (tmp != null)
+            return tmp.exifHPosErr;
+        return exifHPosErr;
+    }
+
+    @Override
     public Instant getLastModified() {
         return Instant.ofEpochMilli(this.getFile().lastModified());
     }
@@ -413,6 +425,15 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
+     * Sets the exif horizontal positioning error
+     * @param exifHposErr 
+     */
+    @Override
+    public void setExifHPosErr(Double exifHPosErr) {
+        this.exifHPosErr = exifHPosErr;
+    }
+
+    /**
      * Sets the IPTC caption.
      * @param iptcCaption the IPTC caption
      * @since 15219
@@ -507,8 +528,8 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     @Override
     public int hashCode() {
         return Objects.hash(height, width, isNewGpsData,
-            elevation, exifCoor, exifGpsTime, exifImgDir, exifOrientation, exifTime,
-            iptcCaption, iptcHeadline, iptcKeywords, iptcObjectName,
+            elevation, exifCoor, exifGpsTime, exifImgDir, exifHPosErr, exifOrientation,
+            exifTime, iptcCaption, iptcHeadline, iptcKeywords, iptcObjectName,
             file, gpsTime, pos, speed, tmp, cameraProjection);
     }
 
@@ -526,6 +547,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
             && Objects.equals(exifCoor, other.exifCoor)
             && Objects.equals(exifGpsTime, other.exifGpsTime)
             && Objects.equals(exifImgDir, other.exifImgDir)
+            && Objects.equals(exifHPosErr, other.exifHPosErr)
             && Objects.equals(exifOrientation, other.exifOrientation)
             && Objects.equals(exifTime, other.exifTime)
             && Objects.equals(iptcCaption, other.iptcCaption)
@@ -578,6 +600,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
             elevation = tmp.elevation;
             gpsTime = tmp.gpsTime;
             exifImgDir = tmp.exifImgDir;
+            exifHPosErr = tmp.exifHPosErr;
             isNewGpsData = isNewGpsData || tmp.isNewGpsData;
             tmp = null;
         }

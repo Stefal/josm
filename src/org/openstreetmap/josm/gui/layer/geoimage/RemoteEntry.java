@@ -37,6 +37,7 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
     private ILatLon pos;
     private Integer exifOrientation;
     private Double elevation;
+    private Double exifHPosErr;
     private Double speed;
     private Double exifImgDir;
     private ILatLon exifCoor;
@@ -153,6 +154,11 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
     }
 
     @Override
+    public void setExifHPosErr(Double exifHPosError) {
+        this.exifHPosErr = exifHPosError;
+    }
+
+    @Override
     public void setIptcCaption(String iptcCaption) {
         this.iptcCaption = iptcCaption;
     }
@@ -217,6 +223,11 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
         return this.exifImgDir;
     }
 
+    @Override
+    public Double getExifHPosErr() {
+        return this.exifHPosErr;
+    }
+    
     @Override
     public Instant getLastModified() {
         if ("file".equals(this.getImageURI().getScheme())) {
@@ -335,7 +346,7 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
     public int hashCode() {
         return Objects.hash(this.uri, this.pos,
                 this.exifOrientation, this.elevation, this.speed, this.exifImgDir,
-                this.exifCoor, this.exifTime, this.exifGpsTime, this.gpsTime,
+                this.exifCoor, this.exifTime, this.exifGpsTime, this.gpsTime, this.exifHPosErr,
                 this.iptcObjectName, this.iptcCaption, this.iptcHeadline, this.iptcKeywords,
                 this.projection, this.title);
     }
@@ -352,6 +363,7 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
                     && Objects.equals(this.exifCoor, other.exifCoor)
                     && Objects.equals(this.exifGpsTime, other.exifGpsTime)
                     && Objects.equals(this.exifImgDir, other.exifImgDir)
+                    && Objects.equals(this.exifHPosErr, other.exifHPosErr)
                     && Objects.equals(this.exifOrientation, other.exifOrientation)
                     && Objects.equals(this.exifTime, other.exifTime)
                     && Objects.equals(this.gpsTime, other.gpsTime)
