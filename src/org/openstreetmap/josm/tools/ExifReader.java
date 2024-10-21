@@ -1,6 +1,8 @@
 // License: GPL. For details, see LICENSE file.
 package org.openstreetmap.josm.tools;
 
+import static org.openstreetmap.josm.tools.I18n.tr;
+
 import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.IOException;
@@ -323,6 +325,28 @@ public final class ExifReader {
         return null;
     }
 
+    public static Double readHpositioningError(File filename) {
+        try {
+            final Metadata metadata = JpegMetadataReader.readMetadata(filename);
+            final GpsDirectory dirGps = metadata.getFirstDirectoryOfType(GpsDirectory.class);
+            return readHpositioningError(dirGps);
+        } catch (JpegProcessingException | IOException e) {
+            Logging.error(e);
+        }
+        return null;
+    }
+
+    public static Double readHpositioningError(GpsDirectory dirGps) {
+        Logging.info(tr("Dans ExifReader.java - readHpositionError(GpsDirectory)"));
+        if (dirGps != null) {
+            Double hposerr = dirGps.getDoubleObject(GpsDirectory.TAG_H_POSITIONING_ERROR);
+            if (hposerr != null) {
+                return hposerr.doubleValue();
+            }
+        }
+        return null;
+    }
+    
     /**
      * Returns the caption of the given IPTC directory.
      * @param dirIptc The IPTC directory

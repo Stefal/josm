@@ -366,6 +366,16 @@ public class ImageData implements Data {
     }
 
     /**
+     * Update the image horizontal positioning error and trigger update
+     * @param img
+     * @param hposerr
+     */
+    public void updateImageHPosErr(ImageEntry img, double hposerr) {
+        img.setExifHPosErr(hposerr);
+        afterImageUpdated(img);
+    }
+
+    /**
      * Manually trigger the {@link ImageDataUpdateListener#imageDataUpdated(ImageData)}
      */
     public void notifyImageUpdate() {

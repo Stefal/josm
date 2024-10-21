@@ -191,6 +191,12 @@ public final class ImageUtils {
             Logging.debug(ex);
         }
 
+        try {
+            ifNotNull(ExifReader.readHpositioningError(dirGps), image::setExifHPosErr);
+        } catch (IndexOutOfBoundsException ex) {
+            Logging.debug(ex);
+        }
+        
         ifNotNull(dirGps.getGpsDate(), d -> image.setExifGpsTime(d.toInstant()));
     }
 
