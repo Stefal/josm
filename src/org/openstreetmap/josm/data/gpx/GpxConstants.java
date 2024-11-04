@@ -145,6 +145,11 @@ public interface GpxConstants {
      *  Fractional seconds are allowed for millisecond timing in tracklogs. */
     String PT_TIME = "time";
 
+    /** True Course/Bearing angle over ground.
+     * @since xxx
+     */
+    String PT_COURSE = "course";
+
     /** Magnetic variation (in degrees) at the point. 0.0 &lt;= value &lt; 360.0 */
     String PT_MAGVAR = "magvar";
 

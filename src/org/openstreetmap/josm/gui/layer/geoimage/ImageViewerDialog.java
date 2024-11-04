@@ -1002,8 +1002,27 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
         if (entry.getExifImgDir() != null) {
             osd.append(tr("\nDirection {0}\u00b0", Math.round(entry.getExifImgDir())));
         }
+        if (entry.getExifGpsTrack() != null) {
+            osd.append(tr("\nGps direction: {0}\u00b0", Math.round(entry.getExifGpsTrack())));
+        }
         if (entry.getExifHPosErr() != null) {
             osd.append(tr("\nHpos errror: {0}m", entry.getExifHPosErr()));
+        }
+        if (entry.getGps2d3dMode() != null) {
+            osd.append(tr("\n2d/3d mode: {0}d", entry.getGps2d3dMode()));
+        }
+        if (entry.getGpsDiffMode() != null) {
+            osd.append(tr("\nDifferential: {0}", entry.getGpsDiffMode()));
+        }
+        if (entry.getExifGpsDop() != null) {
+            Logging.info("OSD gpsExifDop: {0}", entry.getExifGpsDop());
+            osd.append(tr("\nDOP: {0}", entry.getExifGpsDop()));
+        }
+        if (entry.getExifGpsDatum() != null) {
+            osd.append(tr("\nDatum: {0}", entry.getExifGpsDatum().toString()));
+        }
+        if (entry.getExifGpsProcMethod() != null) {
+            osd.append(tr("\nProc. method: {0}", entry.getExifGpsProcMethod().toString()));
         }
 
         DateTimeFormatter dtf = DateUtils.getDateTimeFormatter(FormatStyle.SHORT, FormatStyle.MEDIUM)

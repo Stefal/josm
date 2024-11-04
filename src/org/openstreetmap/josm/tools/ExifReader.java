@@ -220,6 +220,41 @@ public final class ExifReader {
         return null;
     }
 
+    /**
+     * Returns the gps track direction of the given JPEG file.
+     * @param filename The JPEG file to read
+     * @return The gps track direction of the image when it was captures (in degrees between 0.0 and 359.99),
+     * or {@code null} if not found
+     * @since xxx
+     */
+    public static Double readGpsTrackDirection(File filename) {
+        try {
+            final Metadata metadata = JpegMetadataReader.readMetadata(filename);
+            final GpsDirectory dirGps = metadata.getFirstDirectoryOfType(GpsDirectory.class);
+            return readGpsTrackDirection(dirGps);
+        } catch (JpegProcessingException | IOException e) {
+            Logging.error(e);
+        }
+        return null;
+    }
+    
+    /**
+     * Returns the gps track direction of the given EXIF GPS directory.
+     * @param dirGps The EXIF GPS directory
+     * @return The gps track direction of the image when it was captured (in degrees between 0.0 and 359.99),
+     * or {@code null} if missing or if {@code dirGps} is null
+     * @since xxx
+     */
+    public static Double readGpsTrackDirection(GpsDirectory dirGps) {
+        if (dirGps != null) {
+            Rational trackDirection = dirGps.getRational(GpsDirectory.TAG_TRACK);
+            if (trackDirection != null) {
+                return trackDirection.doubleValue();
+            }
+        }
+        return null;
+    }
+
     private static double readAxis(GpsDirectory dirGps, int gpsTag, int gpsTagRef, char cRef) throws MetadataException {
         double value;
         Rational[] components = dirGps.getRationalArray(gpsTag);
@@ -325,6 +360,13 @@ public final class ExifReader {
         return null;
     }
 
+    /**
+     * Returns the gps horizontal positionning error of the given JPEG file.
+     * @param filename The JPEG file to read
+     * @return The gps horizontal positionning error of the camera when the image was captured (in m),
+     *         or {@code null} if not found
+     * @since xxx
+     */
     public static Double readHpositioningError(File filename) {
         try {
             final Metadata metadata = JpegMetadataReader.readMetadata(filename);
@@ -336,8 +378,14 @@ public final class ExifReader {
         return null;
     }
 
+    /**
+     * Returns the gps horizontal positionning error of the given EXIF GPS directory.
+     * @param dirGps The EXIF GPS directory
+     * @return The gps horizontal positionning error of the camera when the image was captured (in m),
+     *         or {@code null} if missing or if {@code dirGps} is null
+     * @since xxx
+     */
     public static Double readHpositioningError(GpsDirectory dirGps) {
-        Logging.info(tr("Dans ExifReader.java - readHpositionError(GpsDirectory)"));
         if (dirGps != null) {
             Double hposerr = dirGps.getDoubleObject(GpsDirectory.TAG_H_POSITIONING_ERROR);
             if (hposerr != null) {
@@ -346,7 +394,222 @@ public final class ExifReader {
         }
         return null;
     }
-    
+
+    /**
+     * Returns the gps differential mode of the given JPEG file.
+     * @param filename The JPEG file to read
+     * @return The gps differential mode of the camera when the image was captured,
+     * <ul>
+     *  <li>0 : no differential correction</li>
+     *  <li>1 : differential correction</li>
+     *  <li>or {@code null} if not found</li>
+     * </ul>
+     * @since xxx
+     */
+    public static Integer readGpsDiffMode(File filename) {
+        try {
+            final Metadata metadata = JpegMetadataReader.readMetadata(filename);
+            final GpsDirectory dirGps = metadata.getFirstDirectoryOfType(GpsDirectory.class);
+            return readGpsDiffMode(dirGps);
+        } catch (JpegProcessingException | IOException e) {
+            Logging.error(e);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the gps differential mode of the given EXIF GPS directory.
+     * @param dirGps The EXIF GPS directory
+     * @return The gps differential mode of the camera when the image was captured,
+     * <ul>
+     *  <li>0 : no differential correction</li>
+     *  <li>1 : differential correction</li>
+     *  <li>or {@code null} if missing or if {@code dirGps} is null</li>
+     * </ul>
+     * @since xxx
+     */    
+    public static Integer readGpsDiffMode(GpsDirectory dirGps) {
+        if (dirGps != null) {
+            Integer gpsDiffMode = dirGps.getInteger(GpsDirectory.TAG_DIFFERENTIAL);
+            if (gpsDiffMode != null) {
+                return gpsDiffMode.intValue();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the gps 2d/3d mode of the given JPEG file.
+     * @param filename The JPEG file to read
+     * @return The gps 2d/3d mode of the camera when the image was captured,
+     * <ul>
+     *  <li>2 : 2d mode</li>
+     *  <li>2 : 3d mode</li>
+     *  <li>or {@code null} if not found</li>
+     * </ul>
+     * @since xxx
+     */
+    public static Integer readGpsMeasureMode(File filename) {
+        try {
+            final Metadata metadata = JpegMetadataReader.readMetadata(filename);
+            final GpsDirectory dirGps = metadata.getFirstDirectoryOfType(GpsDirectory.class);
+            return readGpsMeasureMode(dirGps);
+        } catch (JpegProcessingException | IOException e) {
+            Logging.error(e);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the gps 2d/3d mode of the given EXIF GPS directory.
+     * @param dirGps The EXIF GPS directory
+     * @return The 2d/3d mode of the camera when the image was captured,
+     * <ul>
+     *  <li>2 : 2d mode</li>
+     *  <li>3 : 3d mode</li>
+     *  <li>or {@code null} if missing or if {@code dirGps} is null</li>
+     * </ul>
+     * @since xxx
+     */    
+    public static Integer readGpsMeasureMode(GpsDirectory dirGps) {
+        if (dirGps != null) {
+            Integer gps2d3dMode = dirGps.getInteger(GpsDirectory.TAG_MEASURE_MODE);
+            if (gps2d3dMode != null) {
+                return gps2d3dMode.intValue();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the gps Dop value of the given JPEG file.
+     * @param filename The JPEG file to read
+     * @return The gps Dop value of the camera when the image was captured,
+     *         or {@code null} if not found
+     * @since xxx
+     */
+    public static Double readGpsDop(File filename) {
+        try {
+            final Metadata metadata = JpegMetadataReader.readMetadata(filename);
+            final GpsDirectory dirGps = metadata.getFirstDirectoryOfType(GpsDirectory.class);
+            return readGpsDop(dirGps);
+        } catch (JpegProcessingException | IOException e) {
+            Logging.error(e);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the gps Dop value of the given EXIF GPS directory.
+     * @param dirGps The EXIF GPS directory
+     * @return The gps Dop value of the camera when the image was captured,
+     *         or {@code null} if missing or if {@code dirGps} is null
+     * @since xxx
+     */
+    public static Double readGpsDop(GpsDirectory dirGps) {
+        if (dirGps != null) {
+            Double gpsDop = dirGps.getDoubleObject(GpsDirectory.TAG_DOP);
+            if (gpsDop != null) {
+                return gpsDop.doubleValue();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the gps datum value of the given JPEG file.
+     * @param filename The JPEG file to read
+     * @return The gps datum value of the camera when the image was captured,
+     *         or {@code null} if not found
+     * @since xxx
+     */
+    public static String readGpsDatum(File filename) {
+        try {
+            final Metadata metadata = JpegMetadataReader.readMetadata(filename);
+            final GpsDirectory dirGps = metadata.getFirstDirectoryOfType(GpsDirectory.class);
+            return readGpsDatum(dirGps);
+        } catch (JpegProcessingException | IOException e) {
+            Logging.error(e);
+        }
+        return null;
+    }
+
+    /**
+     * Returns the gps datum value of the given EXIF GPS directory.
+     * @param dirGps The EXIF GPS directory
+     * @return The gps datum value of the camera when the image was captured,
+     *         or {@code null} if missing or if {@code dirGps} is null
+     * @since xxx
+     */
+    public static String readGpsDatum(GpsDirectory dirGps) {
+        if (dirGps != null) {
+            String gpsDatum = dirGps.getString(GpsDirectory.TAG_MAP_DATUM);
+            if (gpsDatum != null) {
+                return gpsDatum.toString();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Return the gps processing method of the given JPEG file.
+     * @param filename The JPEG file to read
+     * @return The gps processing method. Possible values from the EXIF specs are:
+     * <ul>
+     * <li>GPS</li>
+     * <li>QZSS</li>
+     * <li>GALILEO</li>
+     * <li>GLONASS</li>
+     * <li>BEIDOU</li>
+     * <li>NAVIC</li>
+     * <li>CELLID</li>
+     * <li>WLAN</li>
+     * <li>MANUAL</li>
+     * </ul>
+     * Other values, and combined space separated values are possible too.
+     * or {@code null} if missing
+     * @since xxx
+     */
+    public static String readGpsProcessingMethod(File filename) {
+        try {
+            final Metadata metadata = JpegMetadataReader.readMetadata(filename);
+            final GpsDirectory dirGps = metadata.getFirstDirectoryOfType(GpsDirectory.class);
+            return readGpsProcessingMethod(dirGps);
+        } catch (JpegProcessingException | IOException e) {
+            Logging.error(e);
+        }
+        return null;
+    }
+
+    /**
+     * Return the gps processing method of the given EXIF GPS directory.
+     * @param dirGps The EXIF GPS directory
+     * @return The gps processing method. Possible values from the EXIF specs are:
+     * <ul>
+     * <li>GPS</li>
+     * <li>QZSS</li>
+     * <li>GALILEO</li>
+     * <li>GLONASS</li>
+     * <li>BEIDOU</li>
+     * <li>NAVIC</li>
+     * <li>CELLID</li>
+     * <li>WLAN</li>
+     * <li>MANUAL</li>
+     * </ul>
+     * Other values, and combined space separated values are possible too.
+     * or {@code null} if missing or if {@code dirGps} is null
+     * @since xxx
+     */
+    public static String readGpsProcessingMethod(GpsDirectory dirGps) {
+        if (dirGps != null) {
+            String gpsProcessingMethod = dirGps.getDescription(GpsDirectory.TAG_PROCESSING_METHOD);
+            if (gpsProcessingMethod != null) {
+                return gpsProcessingMethod.toString();
+            }
+        }
+        return null;
+    }
+
     /**
      * Returns the caption of the given IPTC directory.
      * @param dirIptc The IPTC directory

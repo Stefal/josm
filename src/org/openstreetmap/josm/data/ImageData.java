@@ -366,12 +366,76 @@ public class ImageData implements Data {
     }
 
     /**
-     * Update the image horizontal positioning error and trigger update
-     * @param img
-     * @param hposerr
+     * Update the gps track direction of the image and trigger update.
+     * @param img the image to update
+     * @param trackDirection the new gps track direction
+     */
+    public void updateImageGpsTrack(ImageEntry img, double trackDirection) {
+        img.setExifGpsTrack(trackDirection);
+        afterImageUpdated(img);
+    }
+
+    /**
+     * Update the image horizontal positioning error and trigger update.
+     * @param img the image to update
+     * @param hposerr the new horizontal positionning error
+     * @since xxx
      */
     public void updateImageHPosErr(ImageEntry img, double hposerr) {
         img.setExifHPosErr(hposerr);
+        afterImageUpdated(img);
+    }
+
+    /**
+     * Update the image gps differential mode and trigger update.
+     * @param img the image to update
+     * @param gpsDiffMode the new gps differential mode
+     * @since xxx
+     */
+    public void updateImageGpsDiffMode(ImageEntry img, Integer gpsDiffMode) {
+        img.setGpsDiffMode(gpsDiffMode);
+        afterImageUpdated(img);
+    }
+
+    /**
+     * Update the image gps 2d/3d mode value and trigger update.
+     * @param img the image to update
+     * @param gps2d3dMode the new 2d/3d gps mode
+     * @since xxx
+     */
+    public void updateImageGps2d3dMode(ImageEntry img, Integer gps2d3dMode) {
+        img.setGps2d3dMode(gps2d3dMode);
+        afterImageUpdated(img);
+    }
+
+    /**
+     * Update the image gps dop value and trigger update.
+     * @param img the image to update
+     * @param exifGpsDop the new gps Dop value
+     * @since xxx
+     */
+    public void updateImageExifGpsDop(ImageEntry img, Double exifGpsDop) {
+        img.setExifGpsDop(exifGpsDop);
+        afterImageUpdated(img);
+    }
+
+    /**
+     * Update the image gps datum and trigger update.
+     * @param img the image to update
+     * @param exifGpsDatum the new datum string value
+     */
+    public void updateImageExifGpsDatum(ImageEntry img, String exifGpsDatum) {
+        img.setExifGpsDatum(exifGpsDatum);
+        afterImageUpdated(img);
+    }
+
+    /**
+     * Update the image gps processing method and trigger update.
+     * @param img the image to update
+     * @param exifGpsProcMethod the new gps processing method
+     */
+    public void updateImageExifGpsProcMethod(ImageEntry img, String exifGpsProcMethod) {
+        img.setExifGpsProcMethod(exifGpsProcMethod);
         afterImageUpdated(img);
     }
 

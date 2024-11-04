@@ -53,6 +53,7 @@ import org.openstreetmap.josm.data.gpx.GpxData.GpxDataChangeListener;
 import org.openstreetmap.josm.data.gpx.GpxDataContainer;
 import org.openstreetmap.josm.data.gpx.GpxImageCorrelation;
 import org.openstreetmap.josm.data.gpx.GpxImageCorrelationSettings;
+import org.openstreetmap.josm.data.gpx.GpxImageExtendedSettings;
 import org.openstreetmap.josm.data.gpx.GpxTimeOffset;
 import org.openstreetmap.josm.data.gpx.GpxTimezone;
 import org.openstreetmap.josm.data.gpx.WayPoint;
@@ -253,9 +254,12 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
     private JCheckBox cbExifImg;
     private JCheckBox cbTaggedImg;
     private JCheckBox cbShowThumbs;
+    private JSeparator sepExtendedTags;
     private JLabel statusBarText;
     private JSeparator sepDirectionPosition;
     private ImageDirectionPositionPanel pDirectionPosition;
+    private JCheckBox cbAddGpsDatum;
+    private JosmTextField tfDatum;
 
     // remember the last number of matched photos
     private int lastNumMatched;
@@ -619,6 +623,47 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         gbc.gridy = y++;
         panelTf.add(cbShowThumbs, gbc);
 
+        //Extended tags GUI
+        gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
+        sepExtendedTags = new JSeparator(SwingConstants.HORIZONTAL);
+        gbc.gridx = 0;
+        gbc.gridy = ++y;
+        panelTf.add(sepExtendedTags, gbc);
+
+        JLabel labelExtTags = new JLabel(tr("Extended tags"));
+        cbAddGpsDatum = new JCheckBox(tr("Set datum for images coordinates"));
+        cbAddGpsDatum.addActionListener(e -> tfDatum.setEnabled(!tfDatum.isEnabled()));
+
+        JLabel labelDatum = new JLabel(tr("Datum:"));
+        tfDatum = new JosmTextField("WGS-84",8);
+        //TODO How to get multiline tooltip
+        // (html ?) See https://stackoverflow.com/questions/868651/multi-line-tooltips-in-java
+        tfDatum.setToolTipText(tr("Enter the datum for your images coordinates. Default value is WGS-84." +
+                                "\nFor RTK it could be your local CRS epsg code." +
+                                "\n (e.g. EPSG-9777 for France mainland.)"));
+        tfDatum.setEnabled(false);
+
+        gbc = GBC.eol();
+        gbc.gridx = 0;
+        gbc.gridy = ++y;
+        panelTf.add(labelExtTags, gbc);
+
+        gbc = GBC.eol();
+        gbc.gridx = 0;
+        gbc.gridy = ++y;
+        panelTf.add(cbAddGpsDatum, gbc);
+
+        gbc = GBC.std();
+        gbc.gridx = 0;
+        gbc.gridy = ++y;
+        panelTf.add(labelDatum);
+
+        gbc = GBC.eol();
+        gbc.gridx = 1;
+        gbc.gridy = y;
+        panelTf.add(tfDatum, gbc);
+
+        //Image direction and position offset GUI
         gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
         sepDirectionPosition = new JSeparator(SwingConstants.HORIZONTAL);
         gbc.gridy = y++;
@@ -651,6 +696,8 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         tfOffset.getDocument().addDocumentListener(statusBarUpdater);
         cbExifImg.addItemListener(statusBarUpdaterWithRepaint);
         cbTaggedImg.addItemListener(statusBarUpdaterWithRepaint);
+        cbAddGpsDatum.addItemListener(statusBarUpdaterWithRepaint);
+        tfDatum.getDocument().addDocumentListener(statusBarUpdater);
         pDirectionPosition.addChangeListenerOnComponents(statusBarUpdaterWithRepaint);
         pDirectionPosition.addItemListenerOnComponents(statusBarUpdaterWithRepaint);
 
@@ -676,6 +723,12 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
             statusBarUpdater.matchAndUpdateStatusBar();
             yLayer.updateBufferAndRepaint();
         }
+    }
+
+    public GpxImageExtendedSettings getSettings() {
+        return new GpxImageExtendedSettings(
+            (boolean) cbAddGpsDatum.isSelected(),
+            (String) tfDatum.getText());
     }
 
     @Override
@@ -786,7 +839,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
             final long offsetMs = ((long) (timezone.getHours() * TimeUnit.HOURS.toMillis(1))) + delta.getMilliseconds(); // in milliseconds
             lastNumMatched = GpxImageCorrelation.matchGpxTrack(dateImgLst, selGpx.data,
                     pDirectionPosition.isVisible() ?
-                            new GpxImageCorrelationSettings(offsetMs, forceTags, pDirectionPosition.getSettings()) :
+                            new GpxImageCorrelationSettings(offsetMs, forceTags, pDirectionPosition.getSettings(), new GpxImageExtendedSettings(cbAddGpsDatum.isSelected(), tfDatum.getText())) :
                             new GpxImageCorrelationSettings(offsetMs, forceTags));
 
             return trn("<html>Matched <b>{0}</b> of <b>{1}</b> photo to GPX track.</html>",

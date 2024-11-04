@@ -219,12 +219,58 @@ public interface IImageEntry<I extends IImageEntry<I>> {
     Double getElevation();
 
     /**
+     * Return the Gps Differential mode value. The differential mode value from the temporary
+     * copy is returned if that copy exists. 
+     * @return the fix mode value
+     * @since xxx
+     */
+    Integer getGpsDiffMode();
+
+    /**
+     * Return the Gps 2d/3d mode value. The 2d/3d mode value from the temporary
+     * copy is returned if that copy exists.
+     * @return the 2d/3d mode value
+     * @since xxx
+     */
+    Integer getGps2d3dMode();
+
+    /**
+     * Return the gps Dop value. The gps Dop value from the temporary
+     * copy is return if that copy exists.
+     * @return the gps dop value
+     * @since xxx
+     */
+    Double getExifGpsDop();
+
+    /**
+     * Return the Gps datum value. The Gps datum value from the temporary
+     * copy is return if that copy exists. 
+     * @return the gps datum value
+     * @since xxx
+     */
+    String getExifGpsDatum();
+
+    /**
+     * Return the Gps processing method. The processing method value from the temporary
+     * copy is return if that copy exists.
+     * @return the gps processing method
+     */
+    String getExifGpsProcMethod();
+
+    /**
      * Returns the image direction. The image direction from the temporary
      * copy is returned if that copy exists.
      * @return The image camera angle
      */
     Double getExifImgDir();
     
+    /**
+     * Returns the image gps track direction. The gps track direction from the temporary
+     * copy is returned if that copy exists.
+     * @return the image gps track direction angle
+     */
+    Double getExifGpsTrack();
+
     /**
      * Returns the image horizontal positionning error. The image positionning error
      * from the temporary copy is returned if that copy exists.

@@ -37,9 +37,15 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
     private ILatLon pos;
     private Integer exifOrientation;
     private Double elevation;
+    private Integer gpsDiffMode;
+    private Integer gps2d3dMode;
     private Double exifHPosErr;
+    private Double exifGpsDop;
+    private String exifGpsDatum;
+    private String exifGpsProcMethod;
     private Double speed;
     private Double exifImgDir;
+    private Double exifGpsTrack;
     private ILatLon exifCoor;
     private Instant exifTime;
     private Instant exifGpsTime;
@@ -119,6 +125,26 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
     }
 
     @Override
+    public void setGpsDiffMode(Integer gpsDiffMode) {
+        this.gpsDiffMode = gpsDiffMode;
+    }
+
+    @Override
+    public void setGps2d3dMode(Integer gps2d3dMode) {
+        this.gps2d3dMode = gps2d3dMode;
+    }
+
+    @Override
+    public void setExifGpsDatum(String exifGpsDatum) {
+        this.exifGpsDatum = exifGpsDatum;
+    }
+
+    @Override
+    public void setExifGpsProcMethod(String exifGpsProcMethod) {
+        this.exifGpsProcMethod = exifGpsProcMethod;
+    }
+
+    @Override
     public void setElevation(Double elevation) {
         this.elevation = elevation;
     }
@@ -154,8 +180,18 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
     }
 
     @Override
+    public void setExifGpsTrack(Double exifGpsTrack) {
+        this.exifGpsTrack = exifGpsTrack;
+    }
+
+    @Override
     public void setExifHPosErr(Double exifHPosError) {
         this.exifHPosErr = exifHPosError;
+    }
+
+    @Override
+    public void setExifGpsDop(Double exifGpsDop) {
+        this.exifGpsDop = exifGpsDop;
     }
 
     @Override
@@ -219,8 +255,33 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
     }
 
     @Override
+    public Integer getGpsDiffMode() {
+        return this.gpsDiffMode;
+    }
+    
+    @Override
+    public Integer getGps2d3dMode() {
+        return this.gps2d3dMode;
+    }
+
+    @Override
+    public String getExifGpsDatum() {
+        return this.exifGpsDatum;
+    }
+
+    @Override
+    public String getExifGpsProcMethod() {
+        return this.exifGpsProcMethod;
+    }
+
+    @Override
     public Double getExifImgDir() {
         return this.exifImgDir;
+    }
+
+    @Override
+    public Double getExifGpsTrack() {
+        return this.exifGpsTrack;
     }
 
     @Override
@@ -228,6 +289,11 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
         return this.exifHPosErr;
     }
     
+    @Override
+    public Double getExifGpsDop() {
+        return this.exifGpsDop;
+    }
+
     @Override
     public Instant getLastModified() {
         if ("file".equals(this.getImageURI().getScheme())) {
@@ -346,9 +412,11 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
     public int hashCode() {
         return Objects.hash(this.uri, this.pos,
                 this.exifOrientation, this.elevation, this.speed, this.exifImgDir,
-                this.exifCoor, this.exifTime, this.exifGpsTime, this.gpsTime, this.exifHPosErr,
-                this.iptcObjectName, this.iptcCaption, this.iptcHeadline, this.iptcKeywords,
-                this.projection, this.title);
+                this.exifGpsTrack, this.exifCoor, this.exifTime, this.exifGpsTime,
+                this.gpsTime, this.exifHPosErr, this.exifGpsDop, this.gpsDiffMode,
+                this.gps2d3dMode, this.exifGpsDatum, this.exifGpsProcMethod,
+                this.iptcObjectName, this.iptcCaption, this.iptcHeadline,
+                this.iptcKeywords, this.projection, this.title);
     }
 
     @Override
@@ -363,7 +431,9 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
                     && Objects.equals(this.exifCoor, other.exifCoor)
                     && Objects.equals(this.exifGpsTime, other.exifGpsTime)
                     && Objects.equals(this.exifImgDir, other.exifImgDir)
+                    && Objects.equals(this.exifGpsTrack, other.exifGpsTrack)
                     && Objects.equals(this.exifHPosErr, other.exifHPosErr)
+                    && Objects.equals(this.exifGpsDop, other.exifGpsDop)
                     && Objects.equals(this.exifOrientation, other.exifOrientation)
                     && Objects.equals(this.exifTime, other.exifTime)
                     && Objects.equals(this.gpsTime, other.gpsTime)
@@ -374,6 +444,10 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
                     && Objects.equals(this.pos, other.pos)
                     && Objects.equals(this.projection, other.projection)
                     && Objects.equals(this.speed, other.speed)
+                    && Objects.equals(this.gpsDiffMode, other.gpsDiffMode)
+                    && Objects.equals(this.gps2d3dMode, other.gps2d3dMode)
+                    && Objects.equals(this.exifGpsDatum, other.exifGpsDatum)
+                    && Objects.equals(this.exifGpsProcMethod, other.exifGpsProcMethod)
                     && Objects.equals(this.title, other.title);
         }
         return false;

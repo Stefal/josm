@@ -12,6 +12,7 @@ public class GpxImageCorrelationSettings {
     private final long offset;
     private final boolean forceTags;
     private final GpxImageDirectionPositionSettings directionPositionSettings;
+    private final GpxImageExtendedSettings extendedSettings;
 
     /**
      * Constructs a new {@code GpxImageCorrelationSettings}.
@@ -19,7 +20,10 @@ public class GpxImageCorrelationSettings {
      * @param forceTags force tagging of all photos, otherwise prefs are used
      */
     public GpxImageCorrelationSettings(long offset, boolean forceTags) {
-        this(offset, forceTags, new GpxImageDirectionPositionSettings(false, 0, 0, 0, 0));
+        this(offset, forceTags,
+        new GpxImageDirectionPositionSettings(false, 0, false, 0, 0, 0),
+        new GpxImageExtendedSettings(false, null)
+        );
     }
 
     /**
@@ -30,11 +34,25 @@ public class GpxImageCorrelationSettings {
      */
     public GpxImageCorrelationSettings(long offset, boolean forceTags,
             GpxImageDirectionPositionSettings directionPositionSettings) {
+        this(offset, forceTags, directionPositionSettings,
+        new GpxImageExtendedSettings(false, null));
+    }
+
+    /**
+     * Constructs a new {@code GpxImageCorrelationSettings}.
+     * @param offset offset in milliseconds
+     * @param forceTags force tagging of all photos, otherwise prefs are used
+     * @param directionPositionSettings direction/position settings
+     * @param extendedSettings blablabla
+     */
+    public GpxImageCorrelationSettings(long offset, boolean forceTags,
+            GpxImageDirectionPositionSettings directionPositionSettings,
+            GpxImageExtendedSettings extendedSettings) {
         this.offset = offset;
         this.forceTags = forceTags;
         this.directionPositionSettings = Objects.requireNonNull(directionPositionSettings);
+        this.extendedSettings = Objects.requireNonNull(extendedSettings);
     }
-
     /**
      * Returns the offset in milliseconds.
      * @return the offset in milliseconds
@@ -59,9 +77,18 @@ public class GpxImageCorrelationSettings {
         return directionPositionSettings;
     }
 
+    /**
+     * Returns the extended exif metadata settings.
+     * @return the extended exif metadata settings
+     */
+    public GpxImageExtendedSettings getExtendedSettings() {
+        return extendedSettings;
+    }
+
     @Override
     public String toString() {
         return "[offset=" + offset + ", forceTags=" + forceTags
-                + ", directionPositionSettings=" + directionPositionSettings + ']';
+                + ", directionPositionSettings=" + directionPositionSettings
+                + ", extendedSettings=" + extendedSettings + ']';
     }
 }
