@@ -918,13 +918,13 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
             }
             Double hposerr = getExifHPosErr();
             if (hposerr != null) {
-                wpt.put(GpxConstants.PT_STD_HDEV, hposerr.toString());
+                wpt.put(GpxConstants.PT_STD_HDEV, hposerr);
             }
             Double exifGpsDop = getExifGpsDop();
             if (exifGpsDop != null) {
                 // TODO check if the image GpsMeasureMode is 2D or 3D 
                 // to put the value to PT_HDOP or PT_PDOP 
-                wpt.put(GpxConstants.PT_PDOP, exifGpsDop.toString());
+                wpt.put(GpxConstants.PT_PDOP, exifGpsDop);
             }
             //TODO add gpsDiffMode gpstrack exifGpsProcMethod here?
         }

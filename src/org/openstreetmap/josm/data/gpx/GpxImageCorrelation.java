@@ -211,9 +211,9 @@ public final class GpxImageCorrelation {
         return null;
     }
 
-    static Float getHPosErr(WayPoint wp) {
+    static Double getHPosErr(WayPoint wp) {
         if (wp != null) {
-            Float hposerr = (Float)wp.attr.get(GpxConstants.PT_STD_HDEV);
+            Double hposerr = (Double)wp.attr.get(GpxConstants.PT_STD_HDEV);
             if (hposerr != null) {
                 return hposerr;
             }
@@ -221,13 +221,13 @@ public final class GpxImageCorrelation {
         return null;
     }
 
-    static Float getGpsDop(WayPoint wp) {
+    static Double getGpsDop(WayPoint wp) {
         if (wp != null) {
-            Float pdopvalue = (Float)wp.attr.get(GpxConstants.PT_PDOP);
+            Double pdopvalue = (Double)wp.attr.get(GpxConstants.PT_PDOP);
             if (pdopvalue != null) {
                 return pdopvalue;
             }   else {
-                Float hdopvalue = (Float)wp.attr.get(GpxConstants.PT_HDOP);
+                Double hdopvalue = (Double)wp.attr.get(GpxConstants.PT_HDOP);
                 if (hdopvalue != null) {
                     return hdopvalue;
                 }
@@ -311,8 +311,8 @@ public final class GpxImageCorrelation {
         int ret = 0;
         Double speed = null;
         Double prevElevation = null;
-        Float prevHPosErr = null;
-        Float prevGpsDop = null;
+        Double prevHPosErr = null;
+        Double prevGpsDop = null;
         Double prevGpsTrack = null;
         String prevGpsFixMode = null;
         //list of differential gps mode
@@ -335,8 +335,8 @@ public final class GpxImageCorrelation {
         }
 
         final Double curElevation = getElevation(curWp);
-        final Float curHPosErr = getHPosErr(curWp);
-        final Float curGpsDop = getGpsDop(curWp);
+        final Double curHPosErr = getHPosErr(curWp);
+        final Double curGpsDop = getGpsDop(curWp);
         final Double curGpsTrack = getGpsTrack(curWp);
         final String curGpsFixMode = curWp.getString(GpxConstants.PT_FIX);
 
