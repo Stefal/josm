@@ -868,9 +868,14 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
                 }
                 Point screen = mv.getPoint(trkPnt);
 
-                if (hdopCircle && trkPnt.get(GpxConstants.PT_HDOP) != null) {
+                if (hdopCircle && (trkPnt.get(GpxConstants.PT_HDOP) != null || trkPnt.get(GpxConstants.PT_STD_HDEV) != null)) {
                     // hdop value
-                    float hdop = ((Number) trkPnt.get(GpxConstants.PT_HDOP)).floatValue();
+                    float hdop;
+                    if (trkPnt.get(GpxConstants.PT_STD_HDEV) != null) {
+                        hdop = ((Number) trkPnt.get(GpxConstants.PT_STD_HDEV)).floatValue();
+                    } else {
+                        hdop = ((Number) trkPnt.get(GpxConstants.PT_HDOP)).floatValue();
+                    }
                     if (hdop < 0) {
                         hdop = 0;
                     }

@@ -192,7 +192,43 @@ public final class ImageUtils {
         }
 
         try {
+            ifNotNull(ExifReader.readGpsTrackDirection(dirGps), image::setExifGpsTrack);
+        } catch (IndexOutOfBoundsException ex) {
+            Logging.debug(ex);
+        }
+
+        try {
             ifNotNull(ExifReader.readHpositioningError(dirGps), image::setExifHPosErr);
+        } catch (IndexOutOfBoundsException ex) {
+            Logging.debug(ex);
+        }
+        
+        try {
+            ifNotNull(ExifReader.readGpsDiffMode(dirGps), image::setGpsDiffMode);
+        } catch (IndexOutOfBoundsException ex) {
+            Logging.debug(ex);
+        }
+        
+        try {
+            ifNotNull(ExifReader.readGpsMeasureMode(dirGps), image::setGps2d3dMode);
+        } catch (IndexOutOfBoundsException ex) {
+            Logging.debug(ex);
+        }
+
+        try {
+            ifNotNull(ExifReader.readGpsDop(dirGps), image::setExifGpsDop);
+        } catch (IndexOutOfBoundsException ex) {
+            Logging.debug(ex);
+        }
+
+        try {
+            ifNotNull(ExifReader.readGpsDatum(dirGps), image::setExifGpsDatum);
+        } catch (IndexOutOfBoundsException ex) {
+            Logging.debug(ex);
+        }
+
+        try {
+            ifNotNull(ExifReader.readGpsProcessingMethod(dirGps), image::setExifGpsProcMethod);
         } catch (IndexOutOfBoundsException ex) {
             Logging.debug(ex);
         }

@@ -127,13 +127,56 @@ public interface ImageMetadata {
     Double getExifImgDir();
 
     /**
-     * Get the exif Horizontal positioning error
+     * Get the exif gps track direction.
+     * @return The gps track direction
+     * @since xxx
+     */
+    Double getExifGpsTrack();
+
+    /**
+     * Get the exif Horizontal positioning error.
      * @return The image horizontal positioning error
+     * @since xxx
      */
     Double getExifHPosErr();
 
     /**
-     * Get the last time the source was modified
+     * Get the Gps Differential mode.
+     * @return The image gnss fix mode
+     * @since xxx
+     */
+    Integer getGpsDiffMode();
+    
+    /**
+     * Get the Gps 2d/3d mode.
+     * @return The image gnss 2d/3d mode
+     * @since xxx
+     */
+    Integer getGps2d3dMode();
+
+    /**
+     * Get the exif Gps Dop value.
+     * @return The image gps dop value
+     * @since xxx
+     */
+    Double getExifGpsDop();
+
+    /**
+     * Get the Gps datum value.
+     * @return The image gps datum value
+     * @since xxx
+     */
+    String getExifGpsDatum();
+
+    /**
+     * Get the exif Gps processing method.
+     * @return The image gps processing method
+     * @since xxx
+     */
+    String getExifGpsProcMethod();
+
+    /**
+     * Get the last time the source was modified.
      * @return The last time the source was modified
      */
     Instant getLastModified();
@@ -210,10 +253,53 @@ public interface ImageMetadata {
     void setExifImgDir(Double exifDir);
 
     /**
-     * Sets the exif horizontal positioning error
-     * @param exifHposErr 
+     * Sets the exif gps track direction.
+     * @param exifGpsTrack The gps track direction
+     * @since xxx
+     */
+    void setExifGpsTrack(Double exifGpsTrack);
+
+    /**
+     * Sets the exif horizontal positioning error.
+     * @param exifHposErr the exif horizontal positionning error
+     * @since xxx
      */
     void setExifHPosErr(Double exifHPosErr);
+
+    /**
+     * Sets the exif gps Dop value.
+     * @param exifGpsDop the exif gps dop value
+     * @since xxx
+     */
+    void setExifGpsDop(Double exifGpsDop);
+
+    /**
+     * Sets the Gps Differential mode.
+     * @param gpsDiffMode
+     * @since xxx
+     */
+    void setGpsDiffMode(Integer gpsDiffMode);
+
+    /**
+     * Sets the Gps 2d/3d mode.
+     * @param gps2d3dMode
+     * @since xxx
+     */
+    void setGps2d3dMode(Integer gps2d3dMode);
+
+    /**
+     * Sets the Gps datum value.
+     * @param exifGpsDatum
+     * @since xxx
+     */
+    void setExifGpsDatum(String exifGpsDatum);
+
+    /**
+     * Sets the Gps processing method.
+     * @param exifGpsProcMethod
+     * @since xxx
+     */
+    void setExifGpsProcMethod(String exifGpsProcMethod);
 
     /**
      * Sets the IPTC caption.
