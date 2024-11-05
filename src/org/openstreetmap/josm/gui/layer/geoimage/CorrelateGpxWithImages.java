@@ -255,6 +255,8 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
     private JCheckBox cbTaggedImg;
     private JCheckBox cbShowThumbs;
     private JSeparator sepExtendedTags;
+    private JLabel labelExtTags;
+    private JLabel labelDatum;
     private JLabel statusBarText;
     private JSeparator sepDirectionPosition;
     private ImageDirectionPositionPanel pDirectionPosition;
@@ -630,17 +632,17 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         gbc.gridy = ++y;
         panelTf.add(sepExtendedTags, gbc);
 
-        JLabel labelExtTags = new JLabel(tr("Extended tags"));
+        labelExtTags = new JLabel(tr("Extended tags"));
         cbAddGpsDatum = new JCheckBox(tr("Set datum for images coordinates"));
         cbAddGpsDatum.addActionListener(e -> tfDatum.setEnabled(!tfDatum.isEnabled()));
 
-        JLabel labelDatum = new JLabel(tr("Datum:"));
+        labelDatum = new JLabel(tr("Datum:"));
         tfDatum = new JosmTextField("WGS-84",8);
         //TODO How to get multiline tooltip
         // (html ?) See https://stackoverflow.com/questions/868651/multi-line-tooltips-in-java
         tfDatum.setToolTipText(tr("Enter the datum for your images coordinates. Default value is WGS-84." +
-                                "\nFor RTK it could be your local CRS epsg code." +
-                                "\n (e.g. EPSG-9777 for France mainland.)"));
+                                " For RTK it could be your local CRS epsg code." +
+                                " (e.g. EPSG:9777 for France mainland.)"));
         tfDatum.setEnabled(false);
 
         gbc = GBC.eol();
@@ -741,6 +743,21 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         }
         if (pDirectionPosition != null) {
             pDirectionPosition.setVisible(isExpert);
+        }
+        if (sepExtendedTags != null) {
+            sepExtendedTags.setVisible(isExpert);
+        }
+        if (labelExtTags != null) {
+            labelExtTags.setVisible(isExpert);
+        }
+        if (cbAddGpsDatum != null) {
+            cbAddGpsDatum.setVisible(isExpert);
+        }
+        if (labelDatum != null) {
+            labelDatum.setVisible(isExpert);
+        }
+        if (tfDatum != null) {
+            tfDatum.setVisible(isExpert);
         }
         if (syncDialog != null) {
             syncDialog.pack();
