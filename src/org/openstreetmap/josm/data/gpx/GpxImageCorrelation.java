@@ -410,8 +410,11 @@ public final class GpxImageCorrelation {
                     if (curElevation != null && prevElevation != null) {
                         curTmp.setElevation(prevElevation + (curElevation - prevElevation) * timeDiff + dirpos.getElevationShift());
                     }
+
+                    // Add exif GpsHPositioningerror interpolated value
                     if (curHPosErr != null && prevHPosErr != null) {
-                        curTmp.setExifHPosErr(prevHPosErr + (curHPosErr - prevHPosErr) * timeDiff);
+                        Double interpolatedValue = prevHPosErr + (curHPosErr - prevHPosErr) * timeDiff;
+                        curTmp.setExifHPosErr(Math.round(interpolatedValue*10000)/10000.0);
                     }
 
                     // Add exif GpsDifferentialMode
@@ -444,7 +447,8 @@ public final class GpxImageCorrelation {
 
                     // Add Exif GpsDop with interpolated gps dop value
                     if (curGpsDop != null && prevGpsDop != null) {
-                        curTmp.setExifGpsDop(prevGpsDop + (curGpsDop - prevGpsDop) * timeDiff);
+                        Double interpolatedValue = prevGpsDop + (curGpsDop - prevGpsDop) * timeDiff;
+                        curTmp.setExifGpsDop(Math.round(interpolatedValue*100)/100.0);
                     }
 
                     // Add Exif GpsTrack tag
@@ -462,7 +466,6 @@ public final class GpxImageCorrelation {
                             curTmp.setExifGpsDatum("WGS-84");
                     }
 
-                    // TODO ajouter les infos GPSMeasure
                     curTmp.setGpsTime(curImg.getExifInstant().minusMillis(offset));
                     curTmp.flagNewGpsData();
                     curImg.tmpUpdated();
