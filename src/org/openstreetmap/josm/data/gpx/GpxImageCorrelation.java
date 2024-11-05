@@ -213,9 +213,9 @@ public final class GpxImageCorrelation {
 
     static Double getHPosErr(WayPoint wp) {
         if (wp != null) {
-            Double hposerr = (Double)wp.attr.get(GpxConstants.PT_STD_HDEV);
+            Float hposerr = (Float)wp.attr.get(GpxConstants.PT_STD_HDEV);
             if (hposerr != null) {
-                return hposerr;
+                return hposerr.doubleValue();
             }
         }
         return null;
@@ -223,13 +223,13 @@ public final class GpxImageCorrelation {
 
     static Double getGpsDop(WayPoint wp) {
         if (wp != null) {
-            Double pdopvalue = (Double)wp.attr.get(GpxConstants.PT_PDOP);
+            Float pdopvalue = (Float)wp.attr.get(GpxConstants.PT_PDOP);
             if (pdopvalue != null) {
-                return pdopvalue;
+                return pdopvalue.doubleValue();
             }   else {
-                Double hdopvalue = (Double)wp.attr.get(GpxConstants.PT_HDOP);
+                Float hdopvalue = (Float)wp.attr.get(GpxConstants.PT_HDOP);
                 if (hdopvalue != null) {
-                    return hdopvalue;
+                    return hdopvalue.doubleValue();
                 }
             }
         }
