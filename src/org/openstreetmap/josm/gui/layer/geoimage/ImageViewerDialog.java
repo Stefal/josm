@@ -1015,7 +1015,6 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
             osd.append(tr("\nDifferential: {0}", entry.getGpsDiffMode()));
         }
         if (entry.getExifGpsDop() != null) {
-            Logging.info("OSD gpsExifDop: {0}", entry.getExifGpsDop());
             osd.append(tr("\nDOP: {0}", entry.getExifGpsDop()));
         }
         if (entry.getExifGpsDatum() != null) {
