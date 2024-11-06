@@ -167,6 +167,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
                 Config.getPref().put("geoimage.timezone", timezone.formatTimezone());
                 Config.getPref().put("geoimage.delta", delta.formatOffset());
                 Config.getPref().putBoolean("geoimage.showThumbs", yLayer.useThumbs);
+                Config.getPref().put("geoimage.datum", tfDatum.getText());
 
                 yLayer.useThumbs = cbShowThumbs.isSelected();
                 yLayer.startLoadThumbs();
@@ -475,6 +476,11 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         }
     }
 
+    static String loadGpsDatum() {
+        String gpsDatum = Config.getPref().get("geoimage.datum", "WGS-84");
+        return gpsDatum;
+    }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
         NoGpxDataWrapper nogdw = new NoGpxDataWrapper();
@@ -635,7 +641,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         cbAddGpsDatum.addActionListener(e -> tfDatum.setEnabled(!tfDatum.isEnabled()));
 
         labelDatum = new JLabel(tr("Datum: "));
-        tfDatum = new JosmTextField("WGS-84",8);
+        tfDatum = new JosmTextField(loadGpsDatum(),8);
         //TODO How to get multiline tooltip
         // (html ?) See https://stackoverflow.com/questions/868651/multi-line-tooltips-in-java
         tfDatum.setToolTipText(tr("Enter the datum for your images coordinates. Default value is WGS-84." +
