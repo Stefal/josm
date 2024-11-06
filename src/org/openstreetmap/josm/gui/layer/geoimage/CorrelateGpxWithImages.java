@@ -247,6 +247,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
     private ExtendedDialog syncDialog;
     private JPanel outerPanel;
+    private JPanel expertPanel;
     private JosmComboBox<GpxDataWrapper> cbGpx;
     private JButton buttonSupport;
     private JosmTextField tfTimezone;
@@ -625,18 +626,19 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         gbc.gridy = y++;
         panelTf.add(cbShowThumbs, gbc);
 
-        //Extended tags GUI
+        //Extended tags GUI panel
+        expertPanel = new JPanel(new GridBagLayout());
         gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
         sepExtendedTags = new JSeparator(SwingConstants.HORIZONTAL);
         gbc.gridx = 0;
-        gbc.gridy = ++y;
-        panelTf.add(sepExtendedTags, gbc);
+        gbc.gridy = 0;
+        expertPanel.add(sepExtendedTags, gbc);
 
         labelExtTags = new JLabel(tr("Extended tags"));
         cbAddGpsDatum = new JCheckBox(tr("Set datum for images coordinates"));
         cbAddGpsDatum.addActionListener(e -> tfDatum.setEnabled(!tfDatum.isEnabled()));
 
-        labelDatum = new JLabel(tr("Datum:"));
+        labelDatum = new JLabel(tr("Datum: "));
         tfDatum = new JosmTextField("WGS-84",8);
         //TODO How to get multiline tooltip
         // (html ?) See https://stackoverflow.com/questions/868651/multi-line-tooltips-in-java
@@ -647,23 +649,28 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
         gbc = GBC.eol();
         gbc.gridx = 0;
-        gbc.gridy = ++y;
-        panelTf.add(labelExtTags, gbc);
+        gbc.gridy = 1;
+        expertPanel.add(labelExtTags, gbc);
 
         gbc = GBC.eol();
         gbc.gridx = 0;
-        gbc.gridy = ++y;
-        panelTf.add(cbAddGpsDatum, gbc);
+        gbc.gridy = 2;
+        expertPanel.add(cbAddGpsDatum, gbc);
 
+        //TODO move this line a little more to the right 
         gbc = GBC.std();
-        gbc.gridx = 0;
-        gbc.gridy = ++y;
-        panelTf.add(labelDatum);
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        expertPanel.add(labelDatum);
 
         gbc = GBC.eol();
-        gbc.gridx = 1;
-        gbc.gridy = y;
-        panelTf.add(tfDatum, gbc);
+        gbc.gridx = 2;
+        gbc.gridy = 3;
+        expertPanel.add(tfDatum, gbc);
+
+        //Add expertPanel to panelTf
+        gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
+        panelTf.add(expertPanel, gbc);
 
         //Image direction and position offset GUI
         gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
@@ -729,8 +736,8 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
     public GpxImageExtendedSettings getSettings() {
         return new GpxImageExtendedSettings(
-            (boolean) cbAddGpsDatum.isSelected(),
-            (String) tfDatum.getText());
+            cbAddGpsDatum.isSelected(),
+            tfDatum.getText());
     }
 
     @Override
@@ -744,20 +751,8 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         if (pDirectionPosition != null) {
             pDirectionPosition.setVisible(isExpert);
         }
-        if (sepExtendedTags != null) {
-            sepExtendedTags.setVisible(isExpert);
-        }
-        if (labelExtTags != null) {
-            labelExtTags.setVisible(isExpert);
-        }
-        if (cbAddGpsDatum != null) {
-            cbAddGpsDatum.setVisible(isExpert);
-        }
-        if (labelDatum != null) {
-            labelDatum.setVisible(isExpert);
-        }
-        if (tfDatum != null) {
-            tfDatum.setVisible(isExpert);
+        if (expertPanel != null) {
+            expertPanel.setVisible(isExpert);
         }
         if (syncDialog != null) {
             syncDialog.pack();
