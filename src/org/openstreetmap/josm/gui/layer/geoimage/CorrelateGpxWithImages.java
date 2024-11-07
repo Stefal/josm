@@ -645,6 +645,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         cbAddGpsDatum.addActionListener(e -> tfDatum.setEnabled(!tfDatum.isEnabled()));
 
         labelDatum = new JLabel(tr("Datum: "));
+        //TODO An AutoCompComboBox would be nice to list the recent datum values. I don't have the skill to add it.
         tfDatum = new JosmTextField(loadGpsDatum(),8);
         //TODO How to get multiline tooltip
         // (html ?) See https://stackoverflow.com/questions/868651/multi-line-tooltips-in-java
