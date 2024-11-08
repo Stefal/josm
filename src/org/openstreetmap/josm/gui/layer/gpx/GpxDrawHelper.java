@@ -92,6 +92,7 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
     private boolean large;
     private int largesize;
     private boolean hdopCircle;
+    private int circleDataSource;
     /** paint direction arrow with alternate math. may be faster **/
     private boolean arrowsFast;
     /** don't draw arrows nearer to each other than this **/
@@ -380,6 +381,7 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
         large = optBool("points.large");
         largesize = optInt("points.large.size");
         hdopCircle = optBool("points.hdopcircle");
+        circleDataSource = optInt("points.circle.data.source");
         colored = getColorMode();
         velocityTune = optInt("colormode.velocity.tune");
         colorModeDynamic = optBool("colormode.dynamic-range");
@@ -868,25 +870,17 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
                 }
                 Point screen = mv.getPoint(trkPnt);
 
-                if (hdopCircle && (trkPnt.get(GpxConstants.PT_HDOP) != null || trkPnt.get(GpxConstants.PT_STD_HDEV) != null)) {
-                    // hdop value
+                if (hdopCircle) {
                     float hdop;
-                    if (trkPnt.get(GpxConstants.PT_STD_HDEV) != null) {
-                        hdop = ((Number) trkPnt.get(GpxConstants.PT_STD_HDEV)).floatValue();
-                    } else {
+                    if (circleDataSource == 0 && trkPnt.get(GpxConstants.PT_HDOP) != null) {
+                        // hdop value
                         hdop = ((Number) trkPnt.get(GpxConstants.PT_HDOP)).floatValue();
+                        drawCircle(g, mv, trkPnt, screen, hdop);
                     }
-                    if (hdop < 0) {
-                        hdop = 0;
+                    if (circleDataSource == 1 && trkPnt.get(GpxConstants.PT_STD_HDEV) != null) {
+                        hdop = ((Number) trkPnt.get(GpxConstants.PT_STD_HDEV)).floatValue();
+                        drawCircle(g, mv, trkPnt, screen, hdop);
                     }
-                    Color customColoringTransparent = hdopAlpha < 0 ? trkPnt.customColoring :
-                            new Color((trkPnt.customColoring.getRGB() & 0x00ffffff) | (hdopAlpha << 24), true);
-                    g.setColor(customColoringTransparent);
-                    // hdop circles
-                    int hdopp = mv.getPoint(new LatLon(
-                            trkPnt.getCoor().lat(),
-                            trkPnt.getCoor().lon() + 2d * 6 * hdop * 360 / 40000000d)).x - screen.x;
-                    g.drawArc(screen.x - hdopp / 2, screen.y - hdopp / 2, hdopp, hdopp, 0, 360);
                 }
                 if (large) {
                     // color the large GPS points like the gps lines
@@ -906,6 +900,20 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
                 }
             } // end for trkpnt
         } // end if large || hdopcircle
+    }
+
+    private void drawCircle(Graphics2D g, MapView mv, WayPoint trkPnt, Point screen, float hdop) {
+        if (hdop < 0) {
+            hdop = 0;
+        }
+        Color customColoringTransparent = hdopAlpha < 0 ? trkPnt.customColoring :
+                new Color((trkPnt.customColoring.getRGB() & 0x00ffffff) | (hdopAlpha << 24), true);
+        g.setColor(customColoringTransparent);
+        // hdop circles
+        int hdopp = mv.getPoint(new LatLon(
+                trkPnt.getCoor().lat(),
+                trkPnt.getCoor().lon() + 2d * 6 * hdop * 360 / 40000000d)).x - screen.x;
+        g.drawArc(screen.x - hdopp / 2, screen.y - hdopp / 2, hdopp, hdopp, 0, 360);
     }
 
     /****************************************************************
