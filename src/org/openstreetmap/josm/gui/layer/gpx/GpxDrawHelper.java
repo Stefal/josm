@@ -91,7 +91,7 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
     /** paint large dots for points **/
     private boolean large;
     private int largesize;
-    private boolean hdopCircle;
+    private boolean drawCircle;
     private int circleDataSource;
     /** paint direction arrow with alternate math. may be faster **/
     private boolean arrowsFast;
@@ -138,8 +138,8 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
     private ColorScale dateScale;
     private ColorScale directionScale;
 
-    /** Opacity for hdop points **/
-    private int hdopAlpha;
+    /** Opacity for circle points **/
+    private int circleAlpha;
 
     // lookup array to draw arrows without doing any math
     private static final int ll0 = 9;
@@ -243,7 +243,8 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
     private double maxTime;
 
     private void setupColors() {
-        hdopAlpha = Config.getPref().getInt("hdop.color.alpha", -1);
+        //TODO rename hdop.color.alpha to circle.color.alpha with data.preferences.java.getUpdatePrefKeys?
+        circleAlpha = Config.getPref().getInt("hdop.color.alpha", -1);
         velocityScale = ColorScale.createHSBScale(256);
         /* Colors (without custom alpha channel, if given) for HDOP painting. */
         hdopScale = ColorScale.createHSBScale(256).makeReversed().addTitle(tr("HDOP"));
@@ -380,7 +381,7 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
         }
         large = optBool("points.large");
         largesize = optInt("points.large.size");
-        hdopCircle = optBool("points.hdopcircle");
+        drawCircle = optBool("points.hdopcircle");
         circleDataSource = optInt("points.circle.data.source");
         colored = getColorMode();
         velocityTune = optInt("colormode.velocity.tune");
@@ -858,10 +859,10 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
     }
 
     /****************************************************************
-     ********** STEP 3d - DRAW LARGE POINTS AND HDOP CIRCLE *********
+     ********** STEP 3d - DRAW LARGE POINTS AND CIRCLES *********
      ****************************************************************/
     private void drawPointsStep3d(Graphics2D g, MapView mv, List<WayPoint> visibleSegments) {
-        if (large || hdopCircle) {
+        if (large || drawCircle) {
             final int halfSize = largesize / 2;
             for (WayPoint trkPnt : visibleSegments) {
                 LatLon c = trkPnt.getCoor();
@@ -870,16 +871,16 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
                 }
                 Point screen = mv.getPoint(trkPnt);
 
-                if (hdopCircle) {
-                    float hdop;
+                if (drawCircle) {
+                    float circleSize;
                     if (circleDataSource == 0 && trkPnt.get(GpxConstants.PT_HDOP) != null) {
-                        // hdop value
-                        hdop = ((Number) trkPnt.get(GpxConstants.PT_HDOP)).floatValue();
-                        drawCircle(g, mv, trkPnt, screen, hdop);
+                        // circleSize value
+                        circleSize = ((Number) trkPnt.get(GpxConstants.PT_HDOP)).floatValue();
+                        drawCircle(g, mv, trkPnt, screen, circleSize);
                     }
                     if (circleDataSource == 1 && trkPnt.get(GpxConstants.PT_STD_HDEV) != null) {
-                        hdop = ((Number) trkPnt.get(GpxConstants.PT_STD_HDEV)).floatValue();
-                        drawCircle(g, mv, trkPnt, screen, hdop);
+                        circleSize = ((Number) trkPnt.get(GpxConstants.PT_STD_HDEV)).floatValue();
+                        drawCircle(g, mv, trkPnt, screen, circleSize);
                     }
                 }
                 if (large) {
@@ -899,21 +900,21 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
                     g.fillRect(screen.x - halfSize, screen.y - halfSize, largesize, largesize);
                 }
             } // end for trkpnt
-        } // end if large || hdopcircle
+        } // end if large || drawCircle
     }
 
-    private void drawCircle(Graphics2D g, MapView mv, WayPoint trkPnt, Point screen, float hdop) {
-        if (hdop < 0) {
-            hdop = 0;
+    private void drawCircle(Graphics2D g, MapView mv, WayPoint trkPnt, Point screen, float circleSize) {
+        if (circleSize < 0) {
+            circleSize = 0;
         }
-        Color customColoringTransparent = hdopAlpha < 0 ? trkPnt.customColoring :
-                new Color((trkPnt.customColoring.getRGB() & 0x00ffffff) | (hdopAlpha << 24), true);
+        Color customColoringTransparent = circleAlpha < 0 ? trkPnt.customColoring :
+                new Color((trkPnt.customColoring.getRGB() & 0x00ffffff) | (circleAlpha << 24), true);
         g.setColor(customColoringTransparent);
-        // hdop circles
-        int hdopp = mv.getPoint(new LatLon(
+        // circleSize circles
+        int circleSizep = mv.getPoint(new LatLon(
                 trkPnt.getCoor().lat(),
-                trkPnt.getCoor().lon() + 2d * 6 * hdop * 360 / 40000000d)).x - screen.x;
-        g.drawArc(screen.x - hdopp / 2, screen.y - hdopp / 2, hdopp, hdopp, 0, 360);
+                trkPnt.getCoor().lon() + 2d * 6 * circleSize * 360 / 40000000d)).x - screen.x;
+        g.drawArc(screen.x - circleSizep / 2, screen.y - circleSizep / 2, circleSizep, circleSizep, 0, 360);
     }
 
     /****************************************************************

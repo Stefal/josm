@@ -66,7 +66,7 @@ public class GPXSettingsPanel extends JPanel implements ValidationListener {
     private final JosmTextField drawLineWidth = new JosmTextField(2);
     private final JCheckBox forceRawGpsLines = new JCheckBox(tr("Force lines if no segments imported"));
     private final JCheckBox largeGpsPoints = new JCheckBox(tr("Draw large GPS points"));
-    private final JCheckBox hdopCircleGpsPoints = new JCheckBox(tr("Draw a circle from HDOP value"));
+    private final JCheckBox circleGpsPoints = new JCheckBox(tr("Draw a circle from value"));
     private final JComboBox<String> circleDataSource = new JosmComboBox<>(new String[] {tr("Hdop"), tr("Horizontal Deviation estimate")}); 
     private final JRadioButton colorTypeVelocity = new JRadioButton(tr("Velocity (red = slow, green = fast)"));
     private final JRadioButton colorTypeDirection = new JRadioButton(tr("Direction (red = west, yellow = north, green = east, blue = south)"));
@@ -134,6 +134,7 @@ public class GPXSettingsPanel extends JPanel implements ValidationListener {
         m.put("markers.show-text", true);
         m.put("markers.pattern", Marker.LABEL_PATTERN_AUTO);
         m.put("markers.audio.pattern", "?{ '{name}' | '{desc}' | '{" + Marker.MARKER_FORMATTED_OFFSET + "}' }");
+        //TODO rename points.hdopcircle to circle with data.preferences.java.getUpdatePrefKeys?
         m.put("points.hdopcircle", false);
         m.put("points.circle.data.source", 0);
         m.put("points.large", false);
@@ -423,15 +424,15 @@ public class GPXSettingsPanel extends JPanel implements ValidationListener {
         add(new JLabel(tr("Minimum distance (pixels)")), GBC.std().insets(40, 0, 0, 0));
         add(drawGpsArrowsMinDist, GBC.eol().fill(GBC.HORIZONTAL).insets(5, 0, 0, 5));
 
-        // hdopCircleGpsPoints
-        hdopCircleGpsPoints.addItemListener(e -> {circleDataSource.setEnabled(hdopCircleGpsPoints.isSelected());});
-        hdopCircleGpsPoints.setToolTipText(tr("Draw a circle from HDOP value"));
+        // circleGpsPoints
+        circleGpsPoints.addItemListener(e -> {circleDataSource.setEnabled(circleGpsPoints.isSelected());});
+        circleGpsPoints.setToolTipText(tr("Draw a circle from value"));
         circleDataSource.setToolTipText(tr("Source of the circle size"));
         circleDataSource.setEnabled(false);
 
-        add(hdopCircleGpsPoints, GBC.std().insets(20, 0, 0, 0));
+        add(circleGpsPoints, GBC.std().insets(20, 0, 0, 0));
         add(circleDataSource, GBC.eop().fill(GBC.HORIZONTAL).insets(5, 0, 0, 5));
-        ExpertToggleAction.addVisibilitySwitcher(hdopCircleGpsPoints);
+        ExpertToggleAction.addVisibilitySwitcher(circleGpsPoints);
         ExpertToggleAction.addVisibilitySwitcher(circleDataSource);
 
         // largeGpsPoints
@@ -631,7 +632,7 @@ public class GPXSettingsPanel extends JPanel implements ValidationListener {
         drawGpsArrows.setSelected(prefBool("lines.arrows"));
         drawGpsArrowsFast.setSelected(prefBool("lines.arrows.fast"));
         drawGpsArrowsMinDist.setText(pref("lines.arrows.min-distance"));
-        hdopCircleGpsPoints.setSelected(prefBool("points.hdopcircle"));
+        circleGpsPoints.setSelected(prefBool("points.hdopcircle"));
         circleDataSource.setSelectedIndex(prefInt("points.circle.data.source"));
         largeGpsPoints.setSelected(prefBool("points.large"));
         useGpsAntialiasing.setSelected(Config.getPref().getBoolean("mappaint.gpx.use-antialiasing", false));
@@ -708,7 +709,7 @@ public class GPXSettingsPanel extends JPanel implements ValidationListener {
             putPref("lines.arrows.min-distance", drawGpsArrowsMinDist.getText());
         }
 
-        putPref("points.hdopcircle", hdopCircleGpsPoints.isSelected());
+        putPref("points.hdopcircle", circleGpsPoints.isSelected());
         putPref("points.circle.data.source", circleDataSource.getSelectedIndex());
         putPref("points.large", largeGpsPoints.isSelected());
         putPref("lines.width", drawLineWidth.getText());
