@@ -873,13 +873,20 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
 
                 if (drawCircle) {
                     float circleSize;
+                    //hdop
                     if (circleDataSource == 0 && trkPnt.get(GpxConstants.PT_HDOP) != null) {
                         // circleSize value
                         circleSize = ((Number) trkPnt.get(GpxConstants.PT_HDOP)).floatValue();
                         drawCircle(g, mv, trkPnt, screen, circleSize);
                     }
+                    //horizontal standard deviation estimate
                     if (circleDataSource == 1 && trkPnt.get(GpxConstants.PT_STD_HDEV) != null) {
                         circleSize = ((Number) trkPnt.get(GpxConstants.PT_STD_HDEV)).floatValue();
+                        drawCircle(g, mv, trkPnt, screen, circleSize);
+                    }
+                    //age of correction
+                    if (circleDataSource == 2 && trkPnt.get(GpxConstants.PT_AGEOFDGPSDATA) != null) {
+                        circleSize = ((Number) trkPnt.get(GpxConstants.PT_AGEOFDGPSDATA)).floatValue();
                         drawCircle(g, mv, trkPnt, screen, circleSize);
                     }
                 }

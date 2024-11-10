@@ -442,6 +442,11 @@ public class NmeaParser {
                         break;
                     }
                 }
+                // Age of differentiel correction
+                accu = e[GGA.GPS_AGE.position];
+                if (!accu.isEmpty() && currentwp != null) {
+                    currentwp.put(GpxConstants.PT_AGEOFDGPSDATA, Float.valueOf(accu));
+                }
                 // reference ID
                 if (GGA.REF.position < e.length) {
                     accu = e[GGA.REF.position];
