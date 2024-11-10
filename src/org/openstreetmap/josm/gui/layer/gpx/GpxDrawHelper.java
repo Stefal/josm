@@ -917,7 +917,7 @@ public class GpxDrawHelper implements SoMChangeListener, MapViewPaintable.LayerP
         Color customColoringTransparent = circleAlpha < 0 ? trkPnt.customColoring :
                 new Color((trkPnt.customColoring.getRGB() & 0x00ffffff) | (circleAlpha << 24), true);
         g.setColor(customColoringTransparent);
-        // circleSize circles
+        // circles
         int circleSizep = mv.getPoint(new LatLon(
                 trkPnt.getCoor().lat(),
                 trkPnt.getCoor().lon() + 2d * 6 * circleSize * 360 / 40000000d)).x - screen.x;
