@@ -286,7 +286,7 @@ public final class GpxImageCorrelation {
             // This code gives a simple linear interpolation of the coordinates between current and
             // previous track point assuming a constant speed in between
             @SuppressWarnings("null")
-            LatLon nextCoorForDirection = nextWp.getCoor();
+            LatLon nextCoorForDirection = curWp.getCoor();
             while (i >= 0) {
                 final GpxImageEntry curImg = images.get(i);
                 final long imgTime = curImg.getExifInstant().toEpochMilli();
@@ -302,6 +302,9 @@ public final class GpxImageCorrelation {
                     final LatLon curCoor = curWp.getCoor();
                     LatLon position = prevCoor.interpolate(curCoor, timeDiff);
                     if (nextCoorForDirection != null && (shiftXY || dirpos.isSetImageDirection())) {
+                        if (nextCoorForDirection.equals(curCoor)) {
+                            nextCoorForDirection = nextWp.getCoor();
+                        }
                         double direction = position.bearing((ILatLon) nextCoorForDirection);
                         if (dirpos.isSetImageDirection()) {
                             curTmp.setExifImgDir(computeDirection(direction, dirpos.getImageDirectionAngleOffset()));
