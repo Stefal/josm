@@ -1030,11 +1030,15 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
                 .withZone(ZoneOffset.UTC);
 
         if (entry.hasExifTime()) {
-            osd.append(tr("\nEXIF time: {0}", dtf.format(entry.getExifInstant())));
+            osd.append(tr("\nEXIF cam time: {0}", dtf.format(entry.getExifInstant())));
+        }
+        if (entry.getExifGpsInstant() != null) {
+            osd.append(tr("\nEXIF gps time: {0}", dtf.format(entry.getExifGpsInstant())));
         }
         if (entry.hasGpsTime()) {
-            osd.append(tr("\nGPS time: {0}", dtf.format(entry.getGpsInstant())));
+            osd.append(tr("\nGPS time:      {0}", dtf.format(entry.getGpsInstant())));
         }
+
         Optional.ofNullable(entry.getIptcCaption()).map(s -> tr("\nCaption: {0}", s)).ifPresent(osd::append);
         Optional.ofNullable(entry.getIptcHeadline()).map(s -> tr("\nHeadline: {0}", s)).ifPresent(osd::append);
         Optional.ofNullable(entry.getIptcKeywords()).map(s -> tr("\nKeywords: {0}", s)).ifPresent(osd::append);

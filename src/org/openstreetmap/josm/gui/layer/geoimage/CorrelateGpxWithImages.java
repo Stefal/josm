@@ -647,7 +647,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         // (html ?) See https://stackoverflow.com/questions/868651/multi-line-tooltips-in-java
         tfDatum.setToolTipText(tr("Enter the datum for your images coordinates. Default value is WGS-84." +
                                 " For RTK it could be your local CRS epsg code." +
-                                " (e.g. EPSG:9777 for France mainland.)"));
+                                " (e.g. EPSG:9781 for France mainland.)"));
         tfDatum.setEnabled(false);
 
         gbc = GBC.eol();
