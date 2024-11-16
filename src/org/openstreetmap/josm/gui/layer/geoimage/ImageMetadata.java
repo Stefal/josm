@@ -116,6 +116,12 @@ public interface ImageMetadata {
     boolean hasExifGpsTime();
 
     /**
+     * Get camera or gps exif time
+     * @return the choosen time
+     */
+    Instant getThisInstant(String timeSource);
+
+    /**
      * Get the exif coordinates
      * @return The location of the image
      */
