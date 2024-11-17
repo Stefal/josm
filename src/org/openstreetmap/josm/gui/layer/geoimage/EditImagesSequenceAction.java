@@ -82,7 +82,7 @@ public class EditImagesSequenceAction extends JosmAction {
             // Create a temporary copy for each image
             dateImgLst.forEach(ie -> ie.createTmp().unflagNewGpsData());
             GpxImageCorrelation.matchGpxTrack(dateImgLst, yLayer.getFauxGpxData(),
-                            new GpxImageCorrelationSettings(0, false, pDirectionPosition.getSettings()));
+                            new GpxImageCorrelationSettings(0, false, "exifCamTime", pDirectionPosition.getSettings()));
             yLayer.updateBufferAndRepaint();
         }
     }

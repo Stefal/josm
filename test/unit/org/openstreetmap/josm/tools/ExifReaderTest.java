@@ -56,6 +56,12 @@ class ExifReaderTest {
         assertEquals(Instant.parse(expectedDate), date);
     }
 
+    @Test
+    void testReadGpsDateTime() {
+        Instant date = ExifReader.readGpsInstant(positionErrorSampleFile);
+        assertEquals(Instant.parse("2024-04-30T16:36:42Z"), date);
+    }
+
     /**
      * Test orientation extraction
      */

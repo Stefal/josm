@@ -326,6 +326,11 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
     }
 
     @Override
+    public Instant getThisInstant(String timeSource) {
+        return this.getThisInstant(timeSource);
+    }
+    
+    @Override
     public ILatLon getExifCoor() {
         return this.exifCoor;
     }
