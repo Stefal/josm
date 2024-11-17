@@ -155,6 +155,7 @@ public class CameraPlane {
      * @param p Point within current plane.
      */
     public synchronized void setRotation(final Point p) {
+        //Logging.info("CameraPlane.java > SetRotation(158) > p: {0}", p.toString());
         setRotation(getVector3D(p));
     }
 
@@ -187,13 +188,17 @@ public class CameraPlane {
      */
     public synchronized void setRotation(Vector3D vec) {
         setRotation(vec.getPolarAngle(), vec.getAzimuthalAngle());
+        //setRotation(vec.getAzimuthalAngle(), vec.getPolarAngle());
     }
 
     public synchronized Vector3D getRotation() {
+        //Logging.info("CameraPlane.java > getRotation(194) > rotation: {0}", this.rotation);
+        //exemple : rotation: [x=15.604142190095004, y=4.997636371429092, z=251.892482776954, r=252.4248175246004, inclination=0.06495576958181486, azimuthal=0.3099535272214313]
+        // inclination correspond à polarangle plus bas
         return this.rotation;
     }
 
-    synchronized void setRotation(double azimuthalAngle, double polarAngle) {
+    public synchronized void setRotation(double azimuthalAngle, double polarAngle) {
         // Note: Something, somewhere, is switching the two.
         // FIXME: Figure out what is switching them and why
         // Prevent us from going much outside 2pi
@@ -209,6 +214,8 @@ public class CameraPlane {
             azimuthalAngle = -HALF_PI;
         }
         this.rotation = new Vector3D(Vector3D.VectorType.RPA, this.rotation.getRadialDistance(), polarAngle, azimuthalAngle);
+        //Logging.info("CameraPlane.java > SetRotation(213) > : polarAngle {0} , azimuthalAngle {1}", polarAngle, azimuthalAngle);
+        // à priori, polarAngle à 0 et azimuthalAngle à 0, c'est la position d'origine
     }
 
     /**
@@ -253,6 +260,7 @@ public class CameraPlane {
         vecY = y * (sinAlpha * sinBeta * sinGamma + cosAlpha * cosGamma)
                 + z * (sinAlpha * sinBeta * cosGamma - cosAlpha * sinGamma) + x * sinAlpha * cosBeta;
         vecZ = y * cosBeta * sinGamma + z * cosBeta * cosGamma - x * sinBeta;
+        //Logging.info("CameraPlane.java > rotate > Yaw_direction: {0} - vecY: {1} - vecZ: {2}", YAW_DIRECTION, vecY, vecZ);
         return new Vector3D(vecX, YAW_DIRECTION * vecY, vecZ);
     }
 

@@ -12,6 +12,7 @@ import java.util.Set;
 
 import org.openstreetmap.josm.data.imagery.street_level.Projections;
 import org.openstreetmap.josm.gui.layer.geoimage.ImageDisplay;
+import org.openstreetmap.josm.tools.Logging;
 
 /**
  * The default perspective image viewer class.
@@ -35,5 +36,9 @@ public class Perspective extends ComponentAdapter implements IImageViewer {
     @Override
     public ImageDisplay.VisRect getDefaultVisibleRectangle(Component component, Image image) {
         return new ImageDisplay.VisRect(0, 0, image.getWidth(null), image.getHeight(null));
+    }
+
+    public void resetRotation(){
+        //do nothing on non 360 images
     }
 }

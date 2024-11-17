@@ -523,6 +523,7 @@ public class ImageDisplay extends JComponent implements Destroyable, PreferenceC
                 ImageDisplay.this.repaint();
                 if (is360panning) {
                     // repaint direction arrow
+                    Logging.info("Imagedisplay: {0}", getIImageViewer(entry).getRotation());
                     MainApplication.getLayerManager().getLayersOfType(GeoImageLayer.class).forEach(AbstractMapViewPaintable::invalidate);
                 }
             }
@@ -1005,6 +1006,16 @@ public class ImageDisplay extends JComponent implements Destroyable, PreferenceC
      */
     public Vector3D getRotation(IImageEntry<?> entry) {
         return entry != null ? getIImageViewer(entry).getRotation() : null;
+    }
+
+    public void resetRotation(IImageEntry<?> entry) {
+        if (Projections.EQUIRECTANGULAR == entry.getProjectionType()) {
+        getIImageViewer(entry).resetRotation();
+        repaint();
+        Logging.info("Imagedisplay: {0}", getIImageViewer(entry).getRotation());
+
+        MainApplication.getLayerManager().getLayersOfType(GeoImageLayer.class).forEach(AbstractMapViewPaintable::invalidate);
+        }
     }
 
     /**

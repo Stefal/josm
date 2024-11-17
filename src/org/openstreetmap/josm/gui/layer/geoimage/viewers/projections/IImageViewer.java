@@ -51,6 +51,8 @@ public interface IImageViewer extends ComponentListener {
         return null;
     }
 
+    void resetRotation();
+
     /**
      * Indicate that the mouse has been dragged to a point
      * @param from The point the mouse was dragged from

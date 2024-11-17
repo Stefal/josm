@@ -88,6 +88,7 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
 
     private final ImageZoomAction imageZoomAction = new ImageZoomAction();
     private final ImageCenterViewAction imageCenterViewAction = new ImageCenterViewAction();
+    private final ImageCenterImageAction centerImageAction = new ImageCenterImageAction();
     private final ImageNextAction imageNextAction = new ImageNextAction();
     private final ImageRemoveAction imageRemoveAction = new ImageRemoveAction();
     private final ImageRemoveFromDiskAction imageRemoveFromDiskAction = new ImageRemoveFromDiskAction();
@@ -162,6 +163,7 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
     private JButton btnCopyPath;
     private JButton btnOpenExternal;
     private JButton btnDeleteFromDisk;
+    private JButton btnCenterImage;
     private JToggleButton tbCentre;
     /** The layer tab (used to select images when multiple layers provide images, makes for easy switching) */
     private final HideableTabbedPane layers = new HideableTabbedPane();
@@ -225,6 +227,7 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
         btnDeleteFromDisk = createButton(imageRemoveFromDiskAction, buttonDim);
         btnCopyPath = createButton(imageCopyPathAction, buttonDim);
         btnOpenExternal = createButton(imageOpenExternalAction, buttonDim);
+        btnCenterImage = createButton(centerImageAction, buttonDim);
 
         btnNext = createNavigationButton(imageNextAction, buttonDim);
         btnLast = createNavigationButton(imageLastAction, buttonDim);
@@ -242,7 +245,7 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
 
         JPanel buttons = new JPanel();
         addButtonGroup(buttons, this.btnFirst, this.btnPrevious, this.btnNext, this.btnLast);
-        addButtonGroup(buttons, this.tbCentre, btnZoomBestFit);
+        addButtonGroup(buttons, this.tbCentre, btnZoomBestFit, this.btnCenterImage);
         addButtonGroup(buttons, this.btnDelete, this.btnDeleteFromDisk);
         addButtonGroup(buttons, this.btnCopyPath, this.btnOpenExternal);
         addButtonGroup(buttons, createButton(visibilityAction, buttonDim));
@@ -402,6 +405,7 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
         imagePreviousAction.destroy();
         imageNextAction.destroy();
         imageCenterViewAction.destroy();
+        centerImageAction.destroy();
         imageCollapseAction.destroy();
         imageCopyPathAction.destroy();
         imageOpenExternalAction.destroy();
@@ -683,6 +687,17 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
                     ImageViewerDialog.this.imageRemoveAction.selectNextImageAfterDeletion(oldEntry);
                 }
             }
+        }
+    }
+
+    private class ImageCenterImageAction extends JosmAction {
+        ImageCenterImageAction() {
+            super(null, new ImageProvider(DIALOG_FOLDER, "position"), tr("Reset image rotation"), null,
+                  false, null, false);
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            imgDisplay.resetRotation(currentEntry);
         }
     }
 

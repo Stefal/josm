@@ -59,6 +59,14 @@ public class Equirectangular extends ComponentAdapter implements IImageViewer {
         return new ImageDisplay.VisRect(0, 0, component.getSize().width, component.getSize().height);
     }
 
+
+    public void resetRotation(){
+        final CameraPlane currentPlane = this.cameraPlane;
+        if (currentPlane != null) {
+            currentPlane.setRotation(0,0);
+        }
+    }
+
     @Override
     public Vector3D getRotation() {
         final CameraPlane currentPlane = this.cameraPlane;
