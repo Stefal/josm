@@ -17,6 +17,7 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.openstreetmap.josm.data.coor.ILatLon;
+import org.openstreetmap.josm.data.gpx.TimeSource;
 import org.openstreetmap.josm.data.imagery.street_level.IImageEntry;
 import org.openstreetmap.josm.data.imagery.street_level.Projections;
 import org.openstreetmap.josm.tools.HttpClient;
@@ -326,7 +327,7 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
     }
 
     @Override
-    public Instant getThisInstant(String timeSource) {
+    public Instant getThisInstant(TimeSource timeSource) {
         return this.getThisInstant(timeSource);
     }
     

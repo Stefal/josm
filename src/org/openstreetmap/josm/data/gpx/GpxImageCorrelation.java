@@ -75,7 +75,7 @@ public final class GpxImageCorrelation {
         final GpxImageDirectionPositionSettings dirpos = settings.getDirectionPositionSettings();
         final GpxImageExtendedSettings extSettings = settings.getExtendedSettings();
         final long offset = settings.getOffset();
-        final String imgTimeSource = settings.getImgTimeSource();
+        final TimeSource imgTimeSource = settings.getImgTimeSource();
 
         boolean isFirst = true;
         long prevWpTime = 0;
@@ -304,7 +304,7 @@ public final class GpxImageCorrelation {
         return null;
     }
 
-    private static int matchPoints(List<? extends GpxImageEntry> images, WayPoint prevWp, long prevWpTime, WayPoint curWp, long curWpTime, String imgTimeSource,
+    private static int matchPoints(List<? extends GpxImageEntry> images, WayPoint prevWp, long prevWpTime, WayPoint curWp, long curWpTime, TimeSource imgTimeSource,
             long offset, boolean interpolate, int tagTime, WayPoint nextWp, GpxImageDirectionPositionSettings dirpos, GpxImageExtendedSettings extSetting) {
 
         final boolean isLast = nextWp == null;
@@ -505,7 +505,7 @@ public final class GpxImageCorrelation {
         return (Utils.toDegrees(direction) + angleOffset) % 360d;
     }
 
-    private static int getLastIndexOfListBefore(List<? extends GpxImageEntry> images, long searchedTime, String imgTimeSource) {
+    private static int getLastIndexOfListBefore(List<? extends GpxImageEntry> images, long searchedTime, TimeSource imgTimeSource) {
         int lstSize = images.size();
 
         // No photos or the first photo taken is later than the search period

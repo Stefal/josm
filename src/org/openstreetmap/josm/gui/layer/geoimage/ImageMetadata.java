@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.openstreetmap.josm.data.coor.ILatLon;
 import org.openstreetmap.josm.data.imagery.street_level.Projections;
+import org.openstreetmap.josm.data.gpx.TimeSource;
 
 /**
  * An interface for images with metadata
@@ -119,7 +120,7 @@ public interface ImageMetadata {
      * Get camera or gps exif time
      * @return the choosen time
      */
-    Instant getThisInstant(String timeSource);
+    Instant getThisInstant(TimeSource timeSource);
 
     /**
      * Get the exif coordinates

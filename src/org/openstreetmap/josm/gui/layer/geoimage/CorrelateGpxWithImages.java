@@ -59,6 +59,7 @@ import org.openstreetmap.josm.data.gpx.GpxImageCorrelationSettings;
 import org.openstreetmap.josm.data.gpx.GpxImageExtendedSettings;
 import org.openstreetmap.josm.data.gpx.GpxTimeOffset;
 import org.openstreetmap.josm.data.gpx.GpxTimezone;
+import org.openstreetmap.josm.data.gpx.TimeSource;
 import org.openstreetmap.josm.data.gpx.WayPoint;
 import org.openstreetmap.josm.data.osm.visitor.BoundingXYVisitor;
 import org.openstreetmap.josm.gui.ExtendedDialog;
@@ -91,7 +92,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
     private static JosmComboBoxModel<GpxDataWrapper> gpxModel;
     private static boolean forceTags;
-    private static String imgTimeSource;
+    private static TimeSource imgTimeSource;
 
     private final transient GeoImageLayer yLayer;
     private transient CorrelationSupportLayer supportLayer;
@@ -867,9 +868,9 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
             // Set image time source from the radio button status
             if (rbTimeFromGps.isSelected()) {
-                imgTimeSource = "exifGpsTime";
+                imgTimeSource = TimeSource.EXIFGPSTIME;
             } else {
-                imgTimeSource = "exifCamTime";
+                imgTimeSource = TimeSource.EXIFCAMTIME;
             }
             
             // The selection of images we are about to correlate may have changed.

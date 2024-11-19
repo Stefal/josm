@@ -11,7 +11,7 @@ public class GpxImageCorrelationSettings {
 
     private final long offset;
     private final boolean forceTags;
-    private final String imgTimeSource;
+    private final TimeSource imgTimeSource;
     private final GpxImageDirectionPositionSettings directionPositionSettings;
     private final GpxImageExtendedSettings extendedSettings;
 
@@ -21,7 +21,7 @@ public class GpxImageCorrelationSettings {
      * @param forceTags force tagging of all photos, otherwise prefs are used
      */
     public GpxImageCorrelationSettings(long offset, boolean forceTags) {
-        this(offset, forceTags, "exifCamTime",
+        this(offset, forceTags, TimeSource.EXIFCAMTIME,
         new GpxImageDirectionPositionSettings(false, 0, false, 0, 0, 0),
         new GpxImageExtendedSettings(false, null)
         );
@@ -35,7 +35,7 @@ public class GpxImageCorrelationSettings {
      * "exifCamTime" for camera internal clock
      * "exifGpsTime for the gps clock of the camera
      */
-    public GpxImageCorrelationSettings(long offset, boolean forceTags, String imgTimeSource) {
+    public GpxImageCorrelationSettings(long offset, boolean forceTags, TimeSource imgTimeSource) {
         this(offset, forceTags, imgTimeSource,
         new GpxImageDirectionPositionSettings(false, 0, false, 0, 0, 0),
         new GpxImageExtendedSettings(false, null)
@@ -51,7 +51,7 @@ public class GpxImageCorrelationSettings {
      * "exifGpsTime for the gps clock of the camera
      * @param directionPositionSettings direction/position settings
      */
-    public GpxImageCorrelationSettings(long offset, boolean forceTags, String imgTimeSource,
+    public GpxImageCorrelationSettings(long offset, boolean forceTags, TimeSource imgTimeSource,
             GpxImageDirectionPositionSettings directionPositionSettings) {
         this(offset, forceTags, imgTimeSource, directionPositionSettings,
         new GpxImageExtendedSettings(false, null));
@@ -67,7 +67,7 @@ public class GpxImageCorrelationSettings {
      * @param directionPositionSettings direction/position settings
      * @param extendedSettings blablabla
      */
-    public GpxImageCorrelationSettings(long offset, boolean forceTags, String imgTimeSource,
+    public GpxImageCorrelationSettings(long offset, boolean forceTags, TimeSource imgTimeSource,
             GpxImageDirectionPositionSettings directionPositionSettings,
             GpxImageExtendedSettings extendedSettings) {
         this.offset = offset;
@@ -97,7 +97,7 @@ public class GpxImageCorrelationSettings {
      * @return the clock source
      * @since xxx
      */
-    public String getImgTimeSource() {
+    public TimeSource getImgTimeSource() {
         return imgTimeSource;
     }
 
