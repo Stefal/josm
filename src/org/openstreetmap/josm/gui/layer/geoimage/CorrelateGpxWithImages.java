@@ -625,8 +625,20 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
         gbc = GBC.eol();
         gbc.gridx = 0;
-        gbc.gridy = y;
+        gbc.gridy = y++;
         panelTf.add(cbShowThumbs, gbc);
+
+        //Image direction and position offset GUI
+        gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
+        sepDirectionPosition = new JSeparator(SwingConstants.HORIZONTAL);
+        gbc.gridy = y++;
+        panelTf.add(sepDirectionPosition, gbc);
+
+        gbc = GBC.eol();
+        gbc.gridwidth = 3;
+        gbc.gridy = y++;
+        pDirectionPosition = ImageDirectionPositionPanel.forGpxTrace();
+        panelTf.add(pDirectionPosition, gbc);
 
         //Extended tags GUI panel
         expertPanel = new JPanel(new GridBagLayout());
@@ -670,18 +682,9 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
         //Add expertPanel to panelTf
         gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
+        gbc.gridy = y++;
         panelTf.add(expertPanel, gbc);
-
-        //Image direction and position offset GUI
-        gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
-        sepDirectionPosition = new JSeparator(SwingConstants.HORIZONTAL);
-        panelTf.add(sepDirectionPosition, gbc);
-
-        gbc = GBC.eol();
-        gbc.gridwidth = 3;
-        pDirectionPosition = ImageDirectionPositionPanel.forGpxTrace();
-        panelTf.add(pDirectionPosition, gbc);
-
+        
         expertChanged(ExpertToggleAction.isExpert());
 
         final JPanel statusBar = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
