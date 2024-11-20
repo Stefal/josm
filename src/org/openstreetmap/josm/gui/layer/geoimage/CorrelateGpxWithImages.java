@@ -632,6 +632,12 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         gbc.gridy = y++;
         panelTf.add(cbShowThumbs, gbc);
 
+        gbc = GBC.eol();
+        gbc.gridwidth = 3;
+        gbc.gridy = y++;
+        pDirectionPosition = ImageDirectionPositionPanel.forGpxTrace();
+        panelTf.add(pDirectionPosition, gbc);
+
         //Extended tags GUI panel
         expertPanel = new JPanel(new GridBagLayout());
         gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
@@ -674,6 +680,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
         //Add expertPanel to panelTf
         gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
+        gbc.gridy = y++;
         panelTf.add(expertPanel, gbc);
 
         //Image direction and position offset GUI
