@@ -636,15 +636,15 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         statusBarText.setFont(statusBarText.getFont().deriveFont(Font.PLAIN, 12));
         statusPanel.add(statusBarText);
 
-        gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 18, 0, 0);
+        /* gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 18, 0, 0);
         gbc.gridy = y++;
         panelTf.add(new JSeparator(SwingConstants.HORIZONTAL), gbc);
 
         gbc = GBC.eol();
         gbc.gridy = y++;
-        panelTf.add(new JLabel(tr("Correlation Status:")));
+        panelTf.add(new JLabel(tr("Correlation Status:"))); */
 
-        gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL);
+        gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(20, 12, 20, 0);
         gbc.gridy = y;
         panelTf.add(statusPanel, gbc);
 
