@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -18,7 +17,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 import java.util.function.BiPredicate;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -309,12 +307,6 @@ public abstract class AbstractPrimitive implements IPrimitive, IFilterablePrimit
         this.changesetId = changesetId;
     }
 
-    @Deprecated(since = "17749")
-    @Override
-    public void setTimestamp(Date timestamp) {
-        this.timestamp = (int) TimeUnit.MILLISECONDS.toSeconds(timestamp.getTime());
-    }
-
     @Override
     public void setInstant(Instant timestamp) {
         this.timestamp = (int) timestamp.getEpochSecond();
@@ -323,12 +315,6 @@ public abstract class AbstractPrimitive implements IPrimitive, IFilterablePrimit
     @Override
     public void setRawTimestamp(int timestamp) {
         this.timestamp = timestamp;
-    }
-
-    @Deprecated(since = "17749")
-    @Override
-    public Date getTimestamp() {
-        return Date.from(getInstant());
     }
 
     @Override
