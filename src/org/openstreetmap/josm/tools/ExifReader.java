@@ -1,8 +1,6 @@
 // License: GPL. For details, see LICENSE file.
 package org.openstreetmap.josm.tools;
 
-import static org.openstreetmap.josm.tools.I18n.tr;
-
 import java.awt.geom.AffineTransform;
 import java.io.File;
 import java.io.IOException;

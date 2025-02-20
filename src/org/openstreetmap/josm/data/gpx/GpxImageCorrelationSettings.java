@@ -53,6 +53,7 @@ public class GpxImageCorrelationSettings {
         this.directionPositionSettings = Objects.requireNonNull(directionPositionSettings);
         this.extendedSettings = Objects.requireNonNull(extendedSettings);
     }
+    
     /**
      * Returns the offset in milliseconds.
      * @return the offset in milliseconds

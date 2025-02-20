@@ -656,7 +656,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
         labelDatum = new JLabel(tr("Datum: "));
         //TODO An AutoCompComboBox would be nice to list the recent datum values. I don't have the skill to add it.
-        tfDatum = new JosmTextField(loadGpsDatum(),8);
+        tfDatum = new JosmTextField(loadGpsDatum(), 8);
         tfDatum.setToolTipText(tr("<html>Enter the datum for your images coordinates. Default value is WGS-84.<br>" + 
                                 "For RTK it could be your local CRS epsg code.<br>(e.g. EPSG:9777 for France mainland.)</html>"));
         tfDatum.setEnabled(false);
@@ -854,7 +854,8 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
             final long offsetMs = ((long) (timezone.getHours() * TimeUnit.HOURS.toMillis(1))) + delta.getMilliseconds(); // in milliseconds
             lastNumMatched = GpxImageCorrelation.matchGpxTrack(dateImgLst, selGpx.data,
                     pDirectionPosition.isVisible() ?
-                            new GpxImageCorrelationSettings(offsetMs, forceTags, pDirectionPosition.getSettings(), new GpxImageExtendedSettings(cbAddGpsDatum.isSelected(), tfDatum.getText())) :
+                            new GpxImageCorrelationSettings(offsetMs, forceTags, pDirectionPosition.getSettings(),
+                                                            new GpxImageExtendedSettings(cbAddGpsDatum.isSelected(), tfDatum.getText())) :
                             new GpxImageCorrelationSettings(offsetMs, forceTags));
 
             return trn("<html>Matched <b>{0}</b> of <b>{1}</b> photo to GPX track.</html>",

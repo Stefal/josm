@@ -1,8 +1,6 @@
 // License: GPL. For details, see LICENSE file.
 package org.openstreetmap.josm.data.gpx;
 
-import static org.openstreetmap.josm.tools.I18n.tr;
-
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -24,7 +22,6 @@ import org.openstreetmap.josm.data.coor.LatLon;
 import org.openstreetmap.josm.data.imagery.street_level.Projections;
 import org.openstreetmap.josm.data.osm.BBox;
 import org.openstreetmap.josm.gui.layer.geoimage.ImageMetadata;
-import org.openstreetmap.josm.tools.Logging;
 
 /**
  * Stores info about each image
@@ -206,7 +203,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     /**
      * Return the Gps 2d or 3d mode value. The Gps mode value form the temporary
      * copy is returned if that copy exists. 
-     * @return
+     * @return the Gps 2d/3d mode value
      */
     @Override
     public Integer getGps2d3dMode() {
@@ -439,7 +436,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
 
     /**
      * Sets Gps Differential mode.
-     * @param gpsDiffMode
+     * @param gpsDiffMode Gps Differential mode
      * @since xxx
      */
     @Override
@@ -449,7 +446,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
 
     /**
      * Sets Gps 2d/3d mode.
-     * @param gps2d3dMode
+     * @param gps2d3dMode Gps 2d/3d mode value
      */
     @Override
     public void setGps2d3dMode(Integer gps2d3dMode) {
@@ -458,7 +455,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
 
     /**
      * Sets Gps Dop value.
-     * @param exifGpsDop
+     * @param exifGpsDop Gps Dop value
      * @since xxx
      */
     @Override
@@ -468,7 +465,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
 
     /**
      * Sets the Gps Datum.
-     * @param exifGpsDatum
+     * @param exifGpsDatum Gps Datum
      * @since xxx
      */
     @Override
@@ -478,7 +475,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
 
     /**
      * Sets the Gps Processing Method.
-     * @param exifGpsProcMethod
+     * @param exifGpsProcMethod Gps Processing Method
      * @since xxx
      */
     @Override

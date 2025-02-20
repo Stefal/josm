@@ -276,28 +276,28 @@ public interface ImageMetadata {
 
     /**
      * Sets the Gps Differential mode.
-     * @param gpsDiffMode
+     * @param gpsDiffMode Gps Differential mode
      * @since xxx
      */
     void setGpsDiffMode(Integer gpsDiffMode);
 
     /**
      * Sets the Gps 2d/3d mode.
-     * @param gps2d3dMode
+     * @param gps2d3dMode Gps 2d/3d mode
      * @since xxx
      */
     void setGps2d3dMode(Integer gps2d3dMode);
 
     /**
      * Sets the Gps datum value.
-     * @param exifGpsDatum
+     * @param exifGpsDatum Gps datum
      * @since xxx
      */
     void setExifGpsDatum(String exifGpsDatum);
 
     /**
      * Sets the Gps processing method.
-     * @param exifGpsProcMethod
+     * @param exifGpsProcMethod Gps processing method
      * @since xxx
      */
     void setExifGpsProcMethod(String exifGpsProcMethod);
