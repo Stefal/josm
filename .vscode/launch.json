@@ -1,0 +1,43 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "ProjectionCLI",
+            "request": "launch",
+            "mainClass": "org.openstreetmap.josm.data.projection.ProjectionCLI",
+            "projectName": "josm"
+        },
+        {
+            "type": "java",
+            "name": "ProjectionRefTest",
+            "request": "launch",
+            "mainClass": "org.openstreetmap.josm.data.projection.ProjectionRefTest",
+            "projectName": "josm"
+        },
+        {
+            "type": "java",
+            "name": "ProjectionRegressionTest",
+            "request": "launch",
+            "mainClass": "org.openstreetmap.josm.data.projection.ProjectionRegressionTest",
+            "projectName": "josm"
+        },
+        {
+            "type": "java",
+            "name": "MainApplication",
+            "request": "launch",
+            "mainClass": "org.openstreetmap.josm.gui.MainApplication",
+            "projectName": "josm",
+            "vmArgs": "-Djosm.dir.name=JOSM-dev --add-exports=java.base/sun.security.action=ALL-UNNAMED --add-exports=java.desktop/com.sun.imageio.plugins.jpeg=ALL-UNNAMED --add-exports=java.desktop/com.sun.imageio.spi=ALL-UNNAMED",
+        }
+    ]
+}

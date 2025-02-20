@@ -21,7 +21,7 @@ import org.openstreetmap.josm.data.coor.conversion.DMSCoordinateFormat;
  * @since 6209
  */
 class ExifReaderTest {
-    private File orientationSampleFile, directionSampleFile;
+    private File orientationSampleFile, directionSampleFile, positionErrorSampleFile;
 
     /**
      * Setup test
@@ -30,6 +30,7 @@ class ExifReaderTest {
     public void setUp() {
         directionSampleFile = new File("nodist/data/exif-example_direction.jpg");
         orientationSampleFile = new File("nodist/data/exif-example_orientation=6.jpg");
+        positionErrorSampleFile = new File("nodist/data/exif-position-error.jpg"); 
     }
 
     /**
@@ -100,6 +101,14 @@ class ExifReaderTest {
         assertEquals(Double.valueOf(23.4), ExifReader.readElevation(new File("nodist/data/exif-example_speed_ele.jpg")));
     }
 
+    /**
+     * Test horizontal position error extraction
+     */
+    @Test
+    void testReadHorPosError() {
+        assertEquals(Double.valueOf(0.014), ExifReader.readHpositioningError(positionErrorSampleFile));
+    }
+    
     /**
      * Non-regression test for ticket <a href="https://josm.openstreetmap.de/ticket/11685">#11685</a>
      * @throws IOException if an error occurs during reading
