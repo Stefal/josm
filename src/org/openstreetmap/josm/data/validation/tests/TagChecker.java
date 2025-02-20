@@ -420,12 +420,12 @@ public class TagChecker extends TagTest implements TaggingPresetListener {
                 List<TaggingPresetItem> minData = new ArrayList<>();
                 for (TaggingPresetItem i : p.data) {
                     if (i instanceof KeyedItem) {
-                        if (!"none".equals(((KeyedItem) i).match))
+                        if (!"none".equals(((KeyedItem) i).match()))
                             minData.add(i);
                         addPresetValue((KeyedItem) i);
                     } else if (i instanceof CheckGroup) {
                         for (Check c : ((CheckGroup) i).checks) {
-                            if (!"none".equals(c.match))
+                            if (!"none".equals(c.match()))
                                 minData.add(c);
                             addPresetValue(c);
                         }
@@ -583,18 +583,6 @@ public class TagChecker extends TagTest implements TaggingPresetListener {
             return Collections.emptySet();
         // null means key is not known
         return null;
-    }
-
-    /**
-     * Determines if the given key is in internal presets.
-     * @param key key
-     * @return {@code true} if the given key is in internal presets
-     * @since 9023
-     * @deprecated since 18281 -- use {@link TaggingPresets#isKeyInPresets(String)} instead
-     */
-    @Deprecated(since = "18281", forRemoval = true)
-    public static boolean isKeyInPresets(String key) {
-        return TaggingPresets.isKeyInPresets(key);
     }
 
     /**

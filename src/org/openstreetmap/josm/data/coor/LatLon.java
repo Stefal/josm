@@ -8,8 +8,6 @@ import java.util.Locale;
 import java.util.Objects;
 
 import org.openstreetmap.josm.data.Bounds;
-import org.openstreetmap.josm.data.osm.Node;
-import org.openstreetmap.josm.data.projection.ProjectionRegistry;
 import org.openstreetmap.josm.tools.Utils;
 
 /**
@@ -177,21 +175,9 @@ public class LatLon extends Coordinate implements ILatLon {
      * values, only differing by no more than 1 / {@link #MAX_SERVER_PRECISION MAX_SERVER_PRECISION}.
      * @deprecated since 18464 (use {@link ILatLon#equalsEpsilon(ILatLon)} instead)
      */
-    @Deprecated
+    @Deprecated(since = "18464", forRemoval = true)
     public boolean equalsEpsilon(LatLon other) {
         return ILatLon.super.equalsEpsilon(other);
-    }
-
-    /**
-     * Determines if this lat/lon is outside of the world
-     * @return <code>true</code>, if the coordinate is outside the world, compared by using lat/lon.
-     * @deprecated use {@link Node#isOutSideWorld} instead, see also #13538.
-     */
-    @Deprecated
-    public boolean isOutSideWorld() {
-        Bounds b = ProjectionRegistry.getProjection().getWorldBoundsLatLon();
-        return lat() < b.getMinLat() || lat() > b.getMaxLat() ||
-                lon() < b.getMinLon() || lon() > b.getMaxLon();
     }
 
     /**
@@ -220,7 +206,7 @@ public class LatLon extends Coordinate implements ILatLon {
      * @return distance in metres.
      * @deprecated since 18494 (use {@link ILatLon#greatCircleDistance(ILatLon)} instead)
      */
-    @Deprecated
+    @Deprecated(since = "18494", forRemoval = true)
     public double greatCircleDistance(LatLon other) {
         return ILatLon.super.greatCircleDistance(other);
     }
@@ -241,7 +227,7 @@ public class LatLon extends Coordinate implements ILatLon {
      * @since 9796
      * @deprecated since 18494 (use {@link ILatLon#bearing(ILatLon)} instead)
      */
-    @Deprecated
+    @Deprecated(since = "18494", forRemoval = true)
     public double bearing(LatLon other) {
         return ILatLon.super.bearing(other);
     }

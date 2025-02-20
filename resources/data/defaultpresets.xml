@@ -1323,8 +1323,11 @@
             <space />
             <optional text="Cycleway Lane Attributes">
                 <combo key="cycleway:both:lane" text="Lane type (both)" values_context="cycleway" values="advisory,exclusive"/>
+                <check key="cycleway:both:buffer" text="Has buffer between automobiles and cycleway (both)" />
                 <combo key="cycleway:left:lane" text="Lane type (left)" values_context="cycleway" values="advisory,exclusive"/>
+                <check key="cycleway:left:buffer" text="Has buffer between automobiles and cycleway (left)" />
                 <combo key="cycleway:right:lane" text="Lane type (right)" values_context="cycleway" values="advisory,exclusive"/>
+                <check key="cycleway:right:buffer" text="Has buffer between automobiles and cycleway (right)" />
             </optional>
             <optional text="Edit Highway Attributes:">
                 <combo key="highway" text="Highway" values="motorway,motorway_link,trunk,trunk_link,primary,primary_link,secondary,secondary_link,tertiary,tertiary_link,unclassified,residential,living_street,service,bus_guideway,construction" values_context="Highway" values_sort="false" />
@@ -4750,7 +4753,17 @@
             <combo key="license_classes" text="License Classes" values="A;A1;B;BE;C,A;A1;B;B1;C;C1;D;D1;BE;CE;C1E;DE;D1E" />
             <reference ref="school_common"/>
             <reference ref="link_contact_address" />
+             <preset_link preset_name="Driver Training" text="Similar but different tags:" />
         </item> <!-- Driving School -->
+        <item name="Driver Training" icon="presets/education/driving_school.svg" type="node,closedway,multipolygon" preset_name_label="true">
+            <link wiki="Tag:amenity=driver_training" />
+            <space />
+            <key key="amenity" value="driver_training" />
+            <reference ref="name_operator_oh_wheelchair" />
+            <combo key="license_classes" text="License Classes" values="A;A1;B;BE;C,A;A1;B;B1;C;C1;D;D1;BE;CE;C1E;DE;D1E" />
+            <reference ref="link_contact_address" />
+            <preset_link preset_name="Driving School" text="Similar but different tags:" />
+        </item> <!-- Driver Training -->
         <item name="Language school" icon="presets/education/language_school.svg" type="node,closedway,multipolygon" preset_name_label="true">
             <link wiki="Tag:amenity=language_school" />
             <space />
@@ -5434,6 +5447,21 @@
                 <reference ref="common_advertising" />
             </optional>
         </item> <!-- Poster box -->
+        <item name="Advertising Totem" icon="presets/leisure/totem.svg" type="node,way" preset_name_label="true">
+            <link wiki="Tag:advertising=totem"/>
+            <space />
+            <key key="advertising" value="totem" />
+            <combo key="message" text="Message type" values="commercial,local,safety,legal,map,political,showbiz,non_profit,opinion,religion" />
+            <optional>
+                <reference ref="ref_operator"/>
+                <reference ref="common_advertising" />
+                <text key="width" text="Width (meters)" />
+                <combo key="sides" text="Sides" values="2,3,4,5,6,7,8,9,10" length="3" />
+                <combo key="orientation" text="Orientation" values="front,medium,parallel,opposite,multi" />
+                <combo key="direction" text="Direction" values="N,E,S,W,0,90,180,270" values_sort="false" />
+                <combo key="visibility" text="Visibility" values="street,area"/>
+            </optional>
+        </item> <!-- Totem -->
     </group> <!-- Facilities -->
   </group>  <!-- Facilities -->
   <group name="Sports" icon="presets/sport/soccer.svg">
@@ -7514,7 +7542,7 @@
                 <list_entry value="bench" short_description="A bench placed in memory of someone or something; usually has a plaque, and sometimes a statue sitting on (part of) it." />
             </combo>
             <optional>
-                <text key="inscription" text="Inscription" />
+                <text key="inscription" text="Inscription" multiline="true" />
                 <text key="artist_name" text="Artist Name" />
                 <combo key="material" text="Material" values="concrete,granite,metal,plastic,steel,stone,wood" />
                 <text key="start_date" text="Start date" />
@@ -7528,7 +7556,7 @@
             <text key="name" text="Name" />
             <reference ref="religious_catholic_christian" />
             <text key="start_date" text="Start date" />
-            <text key="inscription" text="Inscription" />
+            <text key="inscription" text="Inscription" multiline="true" />
         </item> <!-- Wayside Cross -->
         <item name="Wayside Shrine" icon="presets/religion/wayside_shrine.svg" type="node,closedway" preset_name_label="true">
             <link wiki="Tag:historic=wayside_shrine" />
@@ -7539,7 +7567,7 @@
             <check key="amenity" text="Place of worship" value_on="place_of_worship" disable_off="true" />
             <combo key="building" text="Building" values="wayside_shrine,yes" values_context="building" />
             <text key="start_date" text="Start date" />
-            <text key="inscription" text="Inscription" />
+            <text key="inscription" text="Inscription" multiline="true" />
         </item> <!-- Wayside Shrine -->
         <item name="Boundary Stone" icon="presets/landmark/boundary_stone.svg" type="node,closedway" preset_name_label="true">
             <link wiki="Tag:historic=boundary_stone" />
@@ -7547,7 +7575,7 @@
             <key key="historic" value="boundary_stone" />
             <optional>
                 <text key="name" text="Name" />
-                <text key="inscription" text="Inscription" />
+                <text key="inscription" text="Inscription" multiline="true" />
             </optional>
             <preset_link preset_name="Boundary Marker" text="Similar but different tags:" />
         </item> <!-- Boundary Stone -->
@@ -7557,7 +7585,7 @@
             <key key="historic" value="milestone" />
             <optional>
                 <text key="name" text="Name" />
-                <text key="inscription" text="Inscription" />
+                <text key="inscription" text="Inscription" multiline="true" />
             </optional>
         </item> <!-- Milestone -->
     </group> <!-- Historic Places -->
@@ -8946,7 +8974,7 @@
             <key key="boundary" value="marker" />
             <optional>
                 <reference ref="name_ref" />
-                <text key="inscription" text="Inscription" />
+                <text key="inscription" text="Inscription" multiline="true" />
                 <combo key="material" text="Material" values="concrete,metal,plastic,steel,stone,wood" />
             </optional>
             <preset_link preset_name="Boundary Stone" text="Similar but different tags:" />
@@ -9119,7 +9147,7 @@
             <reference ref="name_wikipedia_wikidata" />
             <text key="ele" text="Elevation (meters)" length="10" />
             <optional>
-                <combo key="volcano:status" text="Current Status" values="active,dormant,extinct" />
+                <combo key="volcano:status" text="Current Status" values="active,dormant,extinct" values_context="volcano" />
                 <combo key="volcano:type" text="Type" values="stratovolcano,shield,scoria" />
             </optional>
         </item> <!-- Volcano -->
