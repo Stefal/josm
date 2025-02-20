@@ -234,17 +234,17 @@ public final class GpxImageCorrelation {
                 Float pdopvalue = (Float)wp.attr.get(GpxConstants.PT_PDOP);
                 if (pdopvalue != null) {
                     return pdopvalue.doubleValue();
-                }   else {
+                } else {
                     Float hdopvalue = (Float)wp.attr.get(GpxConstants.PT_HDOP);
                     if (hdopvalue != null) {
                         return hdopvalue.doubleValue();
                     }
                 }
-            }   else if (wp.attr.get(GpxConstants.PT_PDOP) instanceof Double) {
+            } else if (wp.attr.get(GpxConstants.PT_PDOP) instanceof Double) {
                 Double pdopvalue = (Double)wp.attr.get(GpxConstants.PT_PDOP);
                 if (pdopvalue != null) {
                     return pdopvalue;
-                }   else {
+                } else {
                     Double hdopvalue = (Double)wp.attr.get(GpxConstants.PT_HDOP);
                     if (hdopvalue != null) {
                         return hdopvalue;
@@ -269,7 +269,7 @@ public final class GpxImageCorrelation {
         return null;
     }
 
-    static String getGpsProcMethod(String prevGpsFixMode,  final String curGpsFixMode,
+    static String getGpsProcMethod(String prevGpsFixMode, final String curGpsFixMode,
                                     final List<String> positioningModes) {
         String gpsProcMethod = null;
         Integer lowestProcIndex = null;
@@ -290,7 +290,7 @@ public final class GpxImageCorrelation {
         return gpsProcMethod;
     }
 
-    static Integer getGps2d3dMode(String prevGpsFixMode,  final String curGpsFixMode,
+    static Integer getGps2d3dMode(String prevGpsFixMode, final String curGpsFixMode,
                                 final List<String> positioningModes) {
         Integer lowestMode = null;
         lowestMode = Math.min(positioningModes.indexOf(prevGpsFixMode), positioningModes.indexOf(curGpsFixMode));
@@ -303,8 +303,18 @@ public final class GpxImageCorrelation {
         return null;
     }
 
-    private static int matchPoints(List<? extends GpxImageEntry> images, WayPoint prevWp, long prevWpTime, WayPoint curWp, long curWpTime,
-            long offset, boolean interpolate, int tagTime, WayPoint nextWp, GpxImageDirectionPositionSettings dirpos, GpxImageExtendedSettings extSetting) {
+    private static int matchPoints(List<? extends GpxImageEntry>
+                                        images,
+                                        WayPoint prevWp,
+                                        long prevWpTime,
+                                        WayPoint curWp,
+                                        long curWpTime,
+                                        long offset,
+                                        boolean interpolate,
+                                        int tagTime,
+                                        WayPoint nextWp,
+                                        GpxImageDirectionPositionSettings dirpos,
+                                        GpxImageExtendedSettings extSetting) {
 
         final boolean isLast = nextWp == null;
 
@@ -336,8 +346,8 @@ public final class GpxImageCorrelation {
         String prevGpsFixMode = null;
         //list of differential gps mode
         //TODO move these lists in Gpx.Constants?
-        final List<String> diffMode = Arrays.asList( "dgps", "float rtk", "rtk");
-        final List<String> positioningModes = Arrays.asList("none", "manual", "estimated", "2d", "3d", "dgps", "float rtk", "rtk" );
+        final List<String> diffMode = Arrays.asList("dgps", "float rtk", "rtk");
+        final List<String> positioningModes = Arrays.asList("none", "manual", "estimated", "2d", "3d", "dgps", "float rtk", "rtk");
 
 
         if (prevWp != null && interpolate) {

@@ -542,7 +542,7 @@ public class NmeaParser {
                 accu = e[RMC.COURSE.position];
                 if (!accu.isEmpty() && !currentwp.attr.containsKey("course")) {
                     Double.parseDouble(accu);
-                    currentwp.put(GpxConstants.PT_COURSE,accu);
+                    currentwp.put(GpxConstants.PT_COURSE, accu);
                 }
 
                 // TODO fix?

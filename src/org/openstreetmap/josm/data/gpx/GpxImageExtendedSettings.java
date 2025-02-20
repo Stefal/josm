@@ -23,11 +23,12 @@ public class GpxImageExtendedSettings {
     
     /**
      * Determines if image gps datum must be set
-     * @return
+     * @return if the Gps datum must be set
      */
     public boolean isSetImageGpsDatum() {
         return setImageGpsDatum;
     }
+    
     /**
      * Return the gps coordinates datum code.
      * @return the datum code
