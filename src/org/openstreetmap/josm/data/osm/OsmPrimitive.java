@@ -7,7 +7,6 @@ import java.text.MessageFormat;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -294,18 +293,6 @@ public abstract class OsmPrimitive extends AbstractPrimitive implements Template
             if (dataSet != null) {
                 dataSet.fireChangesetIdChanged(this, old, changesetId);
             }
-        } finally {
-            writeUnlock(locked);
-        }
-    }
-
-    @Deprecated(since = "17749", forRemoval = true)
-    @Override
-    public void setTimestamp(Date timestamp) {
-        checkDatasetNotReadOnly();
-        boolean locked = writeLock();
-        try {
-            super.setTimestamp(timestamp);
         } finally {
             writeUnlock(locked);
         }
