@@ -230,34 +230,31 @@ public final class GpxImageCorrelation {
 
     static Double getGpsDop(WayPoint wp) {
         if (wp != null) {
-            if (wp.attr.get(GpxConstants.PT_PDOP) instanceof Float) {
-                Float pdopvalue = (Float)wp.attr.get(GpxConstants.PT_PDOP);
-                if (pdopvalue != null) {
+            if (wp.attr.get(GpxConstants.PT_PDOP) != null) {
+                if (wp.attr.get(GpxConstants.PT_PDOP) instanceof Float) {
+                    Float pdopvalue = (Float)wp.attr.get(GpxConstants.PT_PDOP);
                     return pdopvalue.doubleValue();
-                } else {
-                    Float hdopvalue = (Float)wp.attr.get(GpxConstants.PT_HDOP);
-                    if (hdopvalue != null) {
-                        return hdopvalue.doubleValue();
-                    }
+                } else if (wp.attr.get(GpxConstants.PT_PDOP) instanceof Double) {
+                    Double pdopvalue = (Double)wp.attr.get(GpxConstants.PT_PDOP);
+                    return pdopvalue.doubleValue();
                 }
-            } else if (wp.attr.get(GpxConstants.PT_PDOP) instanceof Double) {
-                Double pdopvalue = (Double)wp.attr.get(GpxConstants.PT_PDOP);
-                if (pdopvalue != null) {
-                    return pdopvalue;
-                } else {
+            } else if (wp.attr.get(GpxConstants.PT_HDOP) != null) {
+                if (wp.attr.get(GpxConstants.PT_HDOP) instanceof Float) {
+                    Float hdopvalue = (Float)wp.attr.get(GpxConstants.PT_HDOP);
+                    return hdopvalue.doubleValue();
+                } else if (wp.attr.get(GpxConstants.PT_HDOP) instanceof Double) {
                     Double hdopvalue = (Double)wp.attr.get(GpxConstants.PT_HDOP);
-                    if (hdopvalue != null) {
-                        return hdopvalue;
-                    }
+                    return hdopvalue.doubleValue();
                 }
             }
         }
         return null;
     }
-    
+
     static Double getGpsTrack(WayPoint wp) {
         if (wp != null) {
             String trackvalue = wp.getString(GpxConstants.PT_COURSE);
+            Logging.debug("track angle value: {0}", trackvalue);
             if (!Utils.isEmpty(trackvalue)) {
                 try {
                     return Double.valueOf(trackvalue);
