@@ -273,6 +273,9 @@ public final class GpxImageCorrelation {
         int lowestGnssModeIdx = 3; // 2d or higher index in positioningModes list are Gnss methods
         try {
             lowestProcIndex = Math.min(positioningModes.indexOf(prevGpsFixMode), positioningModes.indexOf(curGpsFixMode));
+            if (lowestProcIndex < 0) {
+                return null;
+            }
             gpsProcMethod = "GNSS" + " " + positioningModes.get(lowestProcIndex).toUpperCase() + " " + "CORRELATION";
             if (lowestProcIndex < lowestGnssModeIdx) {
                 gpsProcMethod = positioningModes.get(lowestProcIndex).toUpperCase() + " " + "CORRELATION";
