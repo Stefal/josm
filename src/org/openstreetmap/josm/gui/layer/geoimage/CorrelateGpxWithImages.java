@@ -195,7 +195,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
                 yLayer.applyTmp();
                 yLayer.updateBufferAndRepaint();
-                if (Config.getPref().getBoolean("geoimage.supportlayer.delete_on_close", false)) {
+                if (Config.getPref().getBoolean("geoimage.supportlayer.delete_on_close", true)) {
                     removeSupportLayer();
                 }
 
