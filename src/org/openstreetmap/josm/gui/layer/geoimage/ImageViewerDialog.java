@@ -1040,7 +1040,6 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
                 osd.append(tr("\nEXIF GPS time: {0}", dtf.format(entry.getExifGpsInstant())));
             }
             if (entry.hasGpsTime()) {
-                //TODO gérer les variables dans Geoimagesessionexporter
                 osd.append(tr("\nCorr GPS time: {0}", dtf.format(entry.getGpsInstant())));
             }            
             if (entry.getExifImgDir() != null) {
