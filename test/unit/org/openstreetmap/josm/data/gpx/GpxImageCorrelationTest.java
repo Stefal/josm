@@ -401,8 +401,6 @@ class GpxImageCorrelationTest {
     @Test
     void testGetGpsProcMethod() {
         final List<String> positionningModes = Arrays.asList("none", "manual", "estimated", "2d", "3d", "dgps", "float rtk", "rtk" );
-        //TODO better error catch for these assertNull.
-        //See TEST-org.openstreetmap.josm.data.gpx.GpxImageCorrelationTest.txt
         assertNull(GpxImageCorrelation.getGpsProcMethod(null, null, positionningModes));
         assertNull(GpxImageCorrelation.getGpsProcMethod("", "", positionningModes));
         assertNull(GpxImageCorrelation.getGpsProcMethod("3d", null, positionningModes));
