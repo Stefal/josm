@@ -124,6 +124,40 @@ public final class ExifReader {
     }
 
     /**
+     * Returns the gps date/time from the given JPEG file.
+     * @param filename The JPEG file to read
+     * @return The gps date/time read in the EXIF section, or {@code null} if not found
+     * @since xxx
+     */
+     public static Instant readGpsInstant(File filename) {
+        try {
+            final Metadata metadata = JpegMetadataReader.readMetadata(filename);
+            final GpsDirectory dirGps = metadata.getFirstDirectoryOfType(GpsDirectory.class);
+            return readGpsInstant(dirGps);
+        } catch (JpegProcessingException | IOException e) {
+            Logging.error(e);
+        }
+        return null;
+    }
+ 
+    /**
+     * Returns the gps date/time from the given JPEG file.
+     * @param dirGps The EXIF GPS directory
+     * @return The gps date/time read in the EXIF section, or {@code null} if not found
+     */
+    public static Instant readGpsInstant(GpsDirectory dirGps) {
+        if (dirGps != null) {
+            try {
+                Instant dateTimeStamp = dirGps.getGpsDate().toInstant();
+                return dateTimeStamp;
+            } catch (UncheckedParseException | DateTimeException e) {
+                Logging.error(e);
+            }
+        }
+        return null;
+    }
+ 
+    /**
      * Returns the image orientation of the given JPEG file.
      * @param filename The JPEG file to read
      * @return The image orientation as an {@code int}. Default value is 1. Possible values are listed in EXIF spec as follows:<br><ol>
