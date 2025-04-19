@@ -108,6 +108,27 @@ public class GeoImageSessionImporter implements SessionLayerImporter {
             case "exif-image-direction":
                 entry.setExifImgDir(Double.valueOf(attrElem.getTextContent()));
                 break;
+            case "exif-gps-track":
+                entry.setExifGpsTrack(Double.valueOf(attrElem.getTextContent()));
+                break;
+            case "exif-gps-hposerr":
+                entry.setExifHPosErr(Double.valueOf(attrElem.getTextContent()));
+                break;
+            case "exif-gps-diffmode":
+                entry.setGpsDiffMode(Integer.valueOf(attrElem.getTextContent()));
+                break;
+            case "exif-gps-2d3dmode":
+                entry.setGps2d3dMode(Integer.valueOf(attrElem.getTextContent()));
+                break;
+            case "exif-gps-dop":
+                entry.setExifGpsDop(Double.valueOf(attrElem.getTextContent()));
+                break;
+            case "exif-gps-datum":
+                entry.setExifGpsDatum(attrElem.getTextContent());
+                break;
+            case "exif-gps-procmethod":
+                entry.setExifGpsProcMethod(attrElem.getTextContent());
+                break;
             case "is-new-gps-data":
                 if (Boolean.parseBoolean(attrElem.getTextContent())) {
                     entry.flagNewGpsData();
