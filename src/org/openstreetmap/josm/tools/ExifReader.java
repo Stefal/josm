@@ -129,7 +129,7 @@ public final class ExifReader {
      * @return The gps date/time read in the EXIF section, or {@code null} if not found
      * @since xxx
      */
-     public static Instant readGpsInstant(File filename) {
+    public static Instant readGpsInstant(File filename) {
         try {
             final Metadata metadata = JpegMetadataReader.readMetadata(filename);
             final GpsDirectory dirGps = metadata.getFirstDirectoryOfType(GpsDirectory.class);
@@ -144,6 +144,7 @@ public final class ExifReader {
      * Returns the gps date/time from the given JPEG file.
      * @param dirGps The EXIF GPS directory
      * @return The gps date/time read in the EXIF section, or {@code null} if not found
+     * @since xxx
      */
     public static Instant readGpsInstant(GpsDirectory dirGps) {
         if (dirGps != null) {

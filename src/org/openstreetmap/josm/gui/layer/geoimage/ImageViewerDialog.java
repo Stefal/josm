@@ -593,7 +593,7 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
 
     private class ImageExtendedInfoAction extends JosmAction {
         ImageExtendedInfoAction() {
-            super(null, new ImageProvider("info"), tr("Display image extended metadata"),Shortcut.registerShortcut(
+            super(null, new ImageProvider("info"), tr("Display image extended metadata"), Shortcut.registerShortcut(
                     "geoimage:extendedinfos", tr(GEOIMAGE_FILLER, tr("Toggle Osd extended informations")),
                     KeyEvent.CHAR_UNDEFINED, Shortcut.NONE),
             false, null, false);
@@ -607,6 +607,7 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
             refresh(false);
         }
     }
+    
     private class ImageRemoveAction extends JosmAction {
         ImageRemoveAction() {
             super(null, new ImageProvider(DIALOG_FOLDER, "delete"), tr("Remove photo from layer"), Shortcut.registerShortcut(

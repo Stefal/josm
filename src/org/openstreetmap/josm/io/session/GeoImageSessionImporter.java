@@ -25,6 +25,7 @@ import org.w3c.dom.NodeList;
 /**
  * Session importer for {@link GeoImageLayer}.
  * @since 5505
+ * @since xxx exifGpsTrack, exifHPosErr, gpsDiffMode, gps2d3dMode, exifGpsDop, exifGpsDatum, exifGpsProcMethod importer added
  */
 public class GeoImageSessionImporter implements SessionLayerImporter {
 

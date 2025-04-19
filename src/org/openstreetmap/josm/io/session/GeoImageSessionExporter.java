@@ -22,6 +22,7 @@ import org.w3c.dom.Element;
 /**
  * Session exporter for {@link GeoImageLayer}.
  * @since 5505
+ * @since xxx exifGpsTrack, exifHPosErr, gpsDiffMode, gps2d3dMode, exifGpsDop, exifGpsDatum, exifGpsProcMethod exporter added
  */
 public class GeoImageSessionExporter extends AbstractSessionExporter<GeoImageLayer> {
 
