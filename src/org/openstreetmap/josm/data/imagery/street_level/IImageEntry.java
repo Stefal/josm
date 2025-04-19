@@ -305,6 +305,14 @@ public interface IImageEntry<I extends IImageEntry<I>> {
     Instant getGpsInstant();
 
     /**
+     * Returns the Exif GPS Time value. The Exif GPS time value from the temporary copy
+     * is returned if that copy exists.
+     * @return the Exif GPS time value
+     * @since xxx
+     */
+     Instant getExifGpsInstant();
+
+    /**
      * Returns the IPTC caption.
      * @return the IPTC caption
      */
