@@ -400,7 +400,7 @@ class GpxImageCorrelationTest {
      */
     @Test
     void testGetGpsProcMethod() {
-        final List<String> positionningModes = Arrays.asList("none", "manual", "estimated", "2d", "3d", "dgps", "float rtk", "rtk" );
+        final List<String> positionningModes = Arrays.asList("none", "manual", "estimated", "2d", "3d", "dgps", "float rtk", "rtk");
         assertNull(GpxImageCorrelation.getGpsProcMethod(null, null, positionningModes));
         assertNull(GpxImageCorrelation.getGpsProcMethod("", "", positionningModes));
         assertNull(GpxImageCorrelation.getGpsProcMethod("3d", null, positionningModes));
@@ -409,7 +409,7 @@ class GpxImageCorrelationTest {
         assertEquals("ESTIMATED CORRELATION", GpxImageCorrelation.getGpsProcMethod("estimated", "2d", positionningModes));
         assertEquals("GNSS DGPS CORRELATION", GpxImageCorrelation.getGpsProcMethod("rtk", "dgps", positionningModes));
         assertEquals("GNSS RTK_FLOAT CORRELATION", GpxImageCorrelation.getGpsProcMethod("float rtk", "rtk", positionningModes));
-        assertEquals("GNSS RTK_FIX CORRELATION", GpxImageCorrelation.getGpsProcMethod("rtk","rtk", positionningModes));
+        assertEquals("GNSS RTK_FIX CORRELATION", GpxImageCorrelation.getGpsProcMethod("rtk", "rtk", positionningModes));
     }
 
     /**
@@ -417,7 +417,7 @@ class GpxImageCorrelationTest {
      */
     @Test
     void testGetGps2d3dMode() {
-        final List<String> positionningModes = Arrays.asList("none", "manual", "estimated", "2d", "3d", "dgps", "float rtk", "rtk" );
+        final List<String> positionningModes = Arrays.asList("none", "manual", "estimated", "2d", "3d", "dgps", "float rtk", "rtk");
         assertNull(GpxImageCorrelation.getGps2d3dMode(null, null, positionningModes));
         assertNull(GpxImageCorrelation.getGps2d3dMode("", "", positionningModes));
         assertNull(GpxImageCorrelation.getGps2d3dMode("3d", null, positionningModes));

@@ -22,6 +22,7 @@ public class GpxImageDirectionPositionSettings {
      * @param shiftImageX image shift on X axis relative to the direction in meters
      * @param shiftImageY image shift on Y axis relative to the direction in meters
      * @param elevationShift image elevation shift in meters
+     * @since xxx @setGpsTrackDirection was added
      */
     public GpxImageDirectionPositionSettings(
             boolean setImageDirection, double imageDirectionAngleOffset, boolean setGpxTrackDirection, 
@@ -53,6 +54,7 @@ public class GpxImageDirectionPositionSettings {
     /**
      * Determines if gps course direction must be set. Angle value is from the gpx trace.
      * @return {@code true} if image gps course must be set
+     * @since xxx
      */
     public boolean isSetGpxTrackDirection() {
         return setGpxTrackDirection;

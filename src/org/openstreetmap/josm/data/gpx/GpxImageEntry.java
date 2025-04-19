@@ -204,6 +204,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
      * Return the Gps 2d or 3d mode value. The Gps mode value form the temporary
      * copy is returned if that copy exists. 
      * @return the Gps 2d/3d mode value
+     * @since xxx
      */
     @Override
     public Integer getGps2d3dMode() {
@@ -237,6 +238,11 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
         return exifGpsDatum;
     }
 
+    /**
+     * Return the exif Gps processing method string
+     * @return the processing method string
+     * @since xxx
+     */
     @Override
     public String getExifGpsProcMethod() {
         if (tmp != null)
@@ -347,7 +353,12 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
             return tmp.exifImgDir;
         return exifImgDir;
     }
-
+    
+    /**
+     * Convenient way to determine if this entry has a EXIF GPS track angle value, without the cost of building a defensive copy.
+     * @return {@code true} if this entry has a EXIF track angle value
+     * @since xxx
+     */
     @Override
     public Double getExifGpsTrack() {
         if (tmp != null)
@@ -355,6 +366,11 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
         return exifGpsTrack;
     }
 
+     /**
+     * Convenient way to determine if this entry has a EXIF GPS horizontal positionning error value, without the cost of building a defensive copy.
+     * @return {@code true} if this entry has a EXIF GPS horizontal positionning error value
+     * @since xxx
+     */
     @Override
     public Double getExifHPosErr() {
         if (tmp != null)
@@ -447,6 +463,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     /**
      * Sets Gps 2d/3d mode.
      * @param gps2d3dMode Gps 2d/3d mode value
+     * @since xxx
      */
     @Override
     public void setGps2d3dMode(Integer gps2d3dMode) {
@@ -736,6 +753,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
      * Copy the values from the temporary variable to the main instance. The
      * temporary variable is deleted.
      * @see #discardTmp()
+     * @since xxx exifGpsTrack, exifHPosErr, gpsDiffMode, gps2d3dMode, exifGpsDop, exifGpsDatum, exifGpsProcMethod added
      */
     public void applyTmp() {
         if (tmp != null) {

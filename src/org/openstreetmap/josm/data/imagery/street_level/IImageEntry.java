@@ -254,6 +254,7 @@ public interface IImageEntry<I extends IImageEntry<I>> {
      * Return the Gps processing method. The processing method value from the temporary
      * copy is return if that copy exists.
      * @return the gps processing method
+     * @since xxx
      */
     String getExifGpsProcMethod();
 
@@ -268,6 +269,7 @@ public interface IImageEntry<I extends IImageEntry<I>> {
      * Returns the image gps track direction. The gps track direction from the temporary
      * copy is returned if that copy exists.
      * @return the image gps track direction angle
+     * @since xxx
      */
     Double getExifGpsTrack();
 
@@ -275,6 +277,7 @@ public interface IImageEntry<I extends IImageEntry<I>> {
      * Returns the image horizontal positionning error. The image positionning error
      * from the temporary copy is returned if that copy exists.
      * @return the image horizontal positionning error
+     * @since xxx
      */
     Double getExifHPosErr();
     
@@ -310,7 +313,7 @@ public interface IImageEntry<I extends IImageEntry<I>> {
      * @return the Exif GPS time value
      * @since xxx
      */
-     Instant getExifGpsInstant();
+    Instant getExifGpsInstant();
 
     /**
      * Returns the IPTC caption.

@@ -124,21 +124,33 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
         this.speed = speed;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public void setGpsDiffMode(Integer gpsDiffMode) {
         this.gpsDiffMode = gpsDiffMode;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public void setGps2d3dMode(Integer gps2d3dMode) {
         this.gps2d3dMode = gps2d3dMode;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public void setExifGpsDatum(String exifGpsDatum) {
         this.exifGpsDatum = exifGpsDatum;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public void setExifGpsProcMethod(String exifGpsProcMethod) {
         this.exifGpsProcMethod = exifGpsProcMethod;
@@ -179,16 +191,25 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
         this.exifImgDir = exifDir;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public void setExifGpsTrack(Double exifGpsTrack) {
         this.exifGpsTrack = exifGpsTrack;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public void setExifHPosErr(Double exifHPosError) {
         this.exifHPosErr = exifHPosError;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public void setExifGpsDop(Double exifGpsDop) {
         this.exifGpsDop = exifGpsDop;
@@ -254,41 +275,65 @@ public class RemoteEntry implements IImageEntry<RemoteEntry>, ImageMetadata {
         return this.elevation;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public Integer getGpsDiffMode() {
         return this.gpsDiffMode;
     }
     
+    /**
+     * @since xxx
+     */
     @Override
     public Integer getGps2d3dMode() {
         return this.gps2d3dMode;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public String getExifGpsDatum() {
         return this.exifGpsDatum;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public String getExifGpsProcMethod() {
         return this.exifGpsProcMethod;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public Double getExifImgDir() {
         return this.exifImgDir;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public Double getExifGpsTrack() {
         return this.exifGpsTrack;
     }
 
+    /**
+     * @since xxx
+     */
     @Override
     public Double getExifHPosErr() {
         return this.exifHPosErr;
     }
-    
+
+    /**
+     * @since xxx
+     */
     @Override
     public Double getExifGpsDop() {
         return this.exifGpsDop;

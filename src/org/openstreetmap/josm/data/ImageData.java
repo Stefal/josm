@@ -369,6 +369,7 @@ public class ImageData implements Data {
      * Update the gps track direction of the image and trigger update.
      * @param img the image to update
      * @param trackDirection the new gps track direction
+     * @since xxx
      */
     public void updateImageGpsTrack(ImageEntry img, double trackDirection) {
         img.setExifGpsTrack(trackDirection);
@@ -423,6 +424,7 @@ public class ImageData implements Data {
      * Update the image gps datum and trigger update.
      * @param img the image to update
      * @param exifGpsDatum the new datum string value
+     * @since xxx
      */
     public void updateImageExifGpsDatum(ImageEntry img, String exifGpsDatum) {
         img.setExifGpsDatum(exifGpsDatum);
@@ -433,6 +435,7 @@ public class ImageData implements Data {
      * Update the image gps processing method and trigger update.
      * @param img the image to update
      * @param exifGpsProcMethod the new gps processing method
+     * @since xxx
      */
     public void updateImageExifGpsProcMethod(ImageEntry img, String exifGpsProcMethod) {
         img.setExifGpsProcMethod(exifGpsProcMethod);
