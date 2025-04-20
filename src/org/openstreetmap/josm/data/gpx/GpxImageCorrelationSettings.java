@@ -43,7 +43,7 @@ public class GpxImageCorrelationSettings {
      * @param offset offset in milliseconds
      * @param forceTags force tagging of all photos, otherwise prefs are used
      * @param directionPositionSettings direction/position settings
-     * @param extendedSettings gps datum settings
+     * @param extendedSettings GPS datum settings
      * @since xxx @extendedSettings was added
      */
     public GpxImageCorrelationSettings(long offset, boolean forceTags,
