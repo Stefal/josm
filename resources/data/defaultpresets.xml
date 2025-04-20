@@ -1550,6 +1550,7 @@
             <check key="crossing:island" text="With island" />
             <reference ref="check_crossing_access" />
             <label text="In case of traffic signals:" />
+            <check key="crossing:signals" text="With signals" />
             <checkgroup columns="2">
                 <check key="button_operated" text="Button operated" />
                 <check key="traffic_signals:sound" text="Sound signals" />
@@ -2386,6 +2387,13 @@
             <reference ref="wikipedia_wikidata" />
             <reference ref="water_access" />
         </item> <!-- Water -->
+        <item name="Flowline" icon="presets/nautical/waterway_stream.svg" type="way" preset_name_label="true">
+            <link wiki="Tag:waterway=flowline" />
+            <space />
+            <key key="waterway" value="flowline" />
+            <text key="name" text="Name" />
+            <reference ref="water_access" />
+        </item> <!-- Stream -->
         <item name="Tailings Pond" icon="presets/misc/tailings_pond.svg" type="closedway,multipolygon" preset_name_label="true">
             <link wiki="Tag:man_made=tailings_pond" />
             <space />
@@ -2909,7 +2917,7 @@
             <link wiki="Tag:amenity=parking_space" />
             <space />
             <key key="amenity" value="parking_space" />
-            <combo key="parking_space" text="Type of parking space" values="disabled,normal,charging" />
+            <combo key="parking_space" text="Type of parking space" values="disabled,normal,charging,hgv,bus,motorcycle,parent" />
             <reference ref="parking_name_ref" />
             <text key="capacity" text="Capacity" />
             <reference ref="access_fee_operator_surface_smoothness" />
@@ -3530,6 +3538,12 @@
             <text key="ref" text="Reference (track number)" />
             <text key="width" text="Width (meters)" />
             <check key="area" text="Area" />
+        </item> <!-- Railway Platform -->
+        <item name="Railway Platform Edge" icon="presets/transport/platform_rail.svg" type="way" preset_name_label="true">
+            <link wiki="Tag:railway=platform_edge" />
+            <space />
+            <key key="railway" value="platform_edge" />
+            <text key="ref" text="Reference (track number)" />
         </item> <!-- Railway Platform -->
         <separator/>
         <item name="Bus Station" icon="presets/transport/bus_old.svg" type="node,closedway,multipolygon" preset_name_label="true">
@@ -4745,22 +4759,21 @@
             <reference ref="school_common"/>
             <reference ref="link_contact_address" />
         </item> <!-- College -->
-         <item name="Driving School" icon="presets/education/driving_school.svg" type="node,closedway,multipolygon" preset_name_label="true">
+        <item name="Driving School" icon="presets/education/driving_school.svg" type="node,closedway,multipolygon" preset_name_label="true">
             <link wiki="Tag:amenity=driving_school" />
             <space />
             <key key="amenity" value="driving_school" />
             <reference ref="name_operator_oh_wheelchair" />
-            <combo key="license_classes" text="License Classes" values="A;A1;B;BE;C,A;A1;B;B1;C;C1;D;D1;BE;CE;C1E;DE;D1E" />
-            <reference ref="school_common"/>
+            <multiselect key="license_classes" text="License Classes" values="AM;A1;A2;A;B;BE;B1;C1;C1E;C;CE;D1;D1E;D;DE" values_sort="false" values_no_i18n="true" />
             <reference ref="link_contact_address" />
-             <preset_link preset_name="Driver Training" text="Similar but different tags:" />
+            <preset_link preset_name="Driver Training" text="Similar but different tags:" />
         </item> <!-- Driving School -->
         <item name="Driver Training" icon="presets/education/driving_school.svg" type="node,closedway,multipolygon" preset_name_label="true">
             <link wiki="Tag:amenity=driver_training" />
             <space />
             <key key="amenity" value="driver_training" />
             <reference ref="name_operator_oh_wheelchair" />
-            <combo key="license_classes" text="License Classes" values="A;A1;B;BE;C,A;A1;B;B1;C;C1;D;D1;BE;CE;C1E;DE;D1E" />
+            <multiselect key="license_classes" text="License Classes" values="AM;A1;A2;A;B;BE;B1;C1;C1E;C;CE;D1;D1E;D;DE" values_sort="false" values_no_i18n="true" />
             <reference ref="link_contact_address" />
             <preset_link preset_name="Driving School" text="Similar but different tags:" />
         </item> <!-- Driver Training -->
@@ -7211,7 +7224,7 @@
             <reference ref="ref_operator" />
             <preset_link preset_name="Power Substation" />
         </item> <!-- Transformer Tower -->
-        <item name="Terminal" icon="presets/power/terminal.svg" type="node" preset_name_label="true">
+        <item name="Terminal" icon="presets/power/terminal.svg" type="node" preset_name_label="true" name_context="power">
             <link wiki="Tag:power=terminal" />
             <space />
             <key key="power" value="terminal" />
@@ -9852,7 +9865,7 @@
             <space />
             <key key="type" value="boundary" />
             <text key="name" text="Name" />
-            <combo key="boundary" text="Boundary type" values="administrative,maritime,national_park,political,postal_code,protected_area" values_searchable="true" />
+            <combo key="boundary" text="Boundary type" values="administrative,maritime,national_park,political,postal_code,protected_area,place" values_searchable="true" />
             <optional>
                 <combo key="admin_level" text="Administrative level" values="1,2,3,4,5,6,7,8,9,10,11" />
             </optional>
@@ -9895,6 +9908,7 @@
             <space />
             <key key="type" value="restriction" />
             <combo key="restriction" text="Restriction" values="no_left_turn,no_right_turn,no_straight_on,no_u_turn,only_right_turn,only_left_turn,only_straight_on" values_searchable="true" />
+            <multiselect key="except" text="Except" values="psv;bicycle;hgv;motorcar;emergency" />
             <roles>
                 <role key="from" text="from way" requisite="required" count="1" type="way" />
                 <role key="via" text="via node or ways" requisite="required" type="way,node" />

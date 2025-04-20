@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.openstreetmap.josm</groupId>
     <artifactId>josm-parent</artifactId>
-    <version>SNAPSHOT</version>
+    <version>1.5-SNAPSHOT</version>
     <packaging>pom</packaging>
     <properties>
         <project.build.sourceEncoding>US-ASCII</project.build.sourceEncoding>
@@ -32,20 +32,20 @@
     <repositories>
         <repository>
             <id>JOSM</id>
-            <url>https://josm.openstreetmap.de/nexus/content/repositories/public/</url>
+            <url>https://josm.openstreetmap.de/repository/public/</url>
         </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
             <id>JOSM</id>
-            <url>https://josm.openstreetmap.de/nexus/content/repositories/public/</url>
+            <url>https://josm.openstreetmap.de/repository/public/</url>
         </pluginRepository>
     </pluginRepositories>
     <distributionManagement>
         <snapshotRepository>
             <id>josm-snapshots</id>
             <name>JOSM snapshots</name>
-            <url>https://josm.openstreetmap.de/nexus/content/repositories/snapshots</url>
+            <url>https://josm.openstreetmap.de/repository/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
     <build>
@@ -260,7 +260,7 @@
             <dependency>
                 <groupId>org.openstreetmap.jmapviewer</groupId>
                 <artifactId>jmapviewer</artifactId>
-                <version>2.23</version>
+                <version>2.24</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -327,7 +327,7 @@
             <dependency>
                 <groupId>org.webjars.npm</groupId>
                 <artifactId>tag2link</artifactId>
-                <version>2024.10.21</version>
+                <version>2025.3.21</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
