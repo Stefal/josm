@@ -214,9 +214,9 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Return the GPS Dop value. The GPS Dop value from the temporary
+     * Return the GPS DOP value. The GPS DOP value from the temporary
      * copy is returned if that copy exists. 
-     * @return the Dop value
+     * @return the DOP value
      * @since xxx
      */
     @Override
@@ -471,8 +471,8 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Sets GPS Dop value.
-     * @param exifGpsDop GPS Dop value
+     * Sets GPS DOP value.
+     * @param exifGpsDop GPS DOP value
      * @since xxx
      */
     @Override

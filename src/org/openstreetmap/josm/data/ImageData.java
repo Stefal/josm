@@ -410,9 +410,9 @@ public class ImageData implements Data {
     }
 
     /**
-     * Update the image GPS dop value and trigger update.
+     * Update the image GPS DOP value and trigger update.
      * @param img the image to update
-     * @param exifGpsDop the new GPS Dop value
+     * @param exifGpsDop the new GPS DOP value
      * @since xxx
      */
     public void updateImageExifGpsDop(ImageEntry img, Double exifGpsDop) {

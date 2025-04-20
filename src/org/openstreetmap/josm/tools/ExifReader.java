@@ -515,9 +515,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the GPS Dop value of the given JPEG file.
+     * Returns the GPS DOP value of the given JPEG file.
      * @param filename The JPEG file to read
-     * @return The GPS Dop value of the camera when the image was captured,
+     * @return The GPS DOP value of the camera when the image was captured,
      *         or {@code null} if not found
      * @since xxx
      */
@@ -533,9 +533,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the GPS Dop value of the given EXIF GPS directory.
+     * Returns the GPS DOP value of the given EXIF GPS directory.
      * @param dirGps The EXIF GPS directory
-     * @return The GPS Dop value of the camera when the image was captured,
+     * @return The GPS DOP value of the camera when the image was captured,
      *         or {@code null} if missing or if {@code dirGps} is null
      * @since xxx
      */
