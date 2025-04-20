@@ -52,8 +52,8 @@ public class GpxImageDirectionPositionSettings {
     }
 
     /**
-     * Determines if gps course direction must be set. Angle value is from the gpx trace.
-     * @return {@code true} if image gps course must be set
+     * Determines if GPS course direction must be set. Angle value is from the gpx trace.
+     * @return {@code true} if image GPS course must be set
      * @since xxx
      */
     public boolean isSetGpxTrackDirection() {

@@ -124,9 +124,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps date/time from the given JPEG file.
+     * Returns the GPS date/time from the given JPEG file.
      * @param filename The JPEG file to read
-     * @return The gps date/time read in the EXIF section, or {@code null} if not found
+     * @return The GPS date/time read in the EXIF section, or {@code null} if not found
      * @since xxx
      */
     public static Instant readGpsInstant(File filename) {
@@ -141,9 +141,9 @@ public final class ExifReader {
     }
  
     /**
-     * Returns the gps date/time from the given JPEG file.
+     * Returns the GPS date/time from the given JPEG file.
      * @param dirGps The EXIF GPS directory
-     * @return The gps date/time read in the EXIF section, or {@code null} if not found
+     * @return The GPS date/time read in the EXIF section, or {@code null} if not found
      * @since xxx
      */
     public static Instant readGpsInstant(GpsDirectory dirGps) {
@@ -254,9 +254,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps track direction of the given JPEG file.
+     * Returns the GPS track direction of the given JPEG file.
      * @param filename The JPEG file to read
-     * @return The gps track direction of the image when it was captures (in degrees between 0.0 and 359.99),
+     * @return The GPS track direction of the image when it was captures (in degrees between 0.0 and 359.99),
      * or {@code null} if not found
      * @since xxx
      */
@@ -272,9 +272,9 @@ public final class ExifReader {
     }
     
     /**
-     * Returns the gps track direction of the given EXIF GPS directory.
+     * Returns the GPS track direction of the given EXIF GPS directory.
      * @param dirGps The EXIF GPS directory
-     * @return The gps track direction of the image when it was captured (in degrees between 0.0 and 359.99),
+     * @return The GPS track direction of the image when it was captured (in degrees between 0.0 and 359.99),
      * or {@code null} if missing or if {@code dirGps} is null
      * @since xxx
      */
@@ -394,9 +394,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps horizontal positionning error of the given JPEG file.
+     * Returns the GPS horizontal positionning error of the given JPEG file.
      * @param filename The JPEG file to read
-     * @return The gps horizontal positionning error of the camera when the image was captured (in m),
+     * @return The GPS horizontal positionning error of the camera when the image was captured (in m),
      *         or {@code null} if not found
      * @since xxx
      */
@@ -412,9 +412,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps horizontal positionning error of the given EXIF GPS directory.
+     * Returns the GPS horizontal positionning error of the given EXIF GPS directory.
      * @param dirGps The EXIF GPS directory
-     * @return The gps horizontal positionning error of the camera when the image was captured (in m),
+     * @return The GPS horizontal positionning error of the camera when the image was captured (in m),
      *         or {@code null} if missing or if {@code dirGps} is null
      * @since xxx
      */
@@ -429,9 +429,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps differential mode of the given JPEG file.
+     * Returns the GPS differential mode of the given JPEG file.
      * @param filename The JPEG file to read
-     * @return The gps differential mode of the camera when the image was captured,
+     * @return The GPS differential mode of the camera when the image was captured,
      * <ul>
      *  <li>0 : no differential correction</li>
      *  <li>1 : differential correction</li>
@@ -451,9 +451,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps differential mode of the given EXIF GPS directory.
+     * Returns the GPS differential mode of the given EXIF GPS directory.
      * @param dirGps The EXIF GPS directory
-     * @return The gps differential mode of the camera when the image was captured,
+     * @return The GPS differential mode of the camera when the image was captured,
      * <ul>
      *  <li>0 : no differential correction</li>
      *  <li>1 : differential correction</li>
@@ -472,9 +472,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps 2d/3d mode of the given JPEG file.
+     * Returns the GPS 2d/3d mode of the given JPEG file.
      * @param filename The JPEG file to read
-     * @return The gps 2d/3d mode of the camera when the image was captured,
+     * @return The GPS 2d/3d mode of the camera when the image was captured,
      * <ul>
      *  <li>2 : 2d mode</li>
      *  <li>2 : 3d mode</li>
@@ -494,7 +494,7 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps 2d/3d mode of the given EXIF GPS directory.
+     * Returns the GPS 2d/3d mode of the given EXIF GPS directory.
      * @param dirGps The EXIF GPS directory
      * @return The 2d/3d mode of the camera when the image was captured,
      * <ul>
@@ -515,9 +515,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps Dop value of the given JPEG file.
+     * Returns the GPS Dop value of the given JPEG file.
      * @param filename The JPEG file to read
-     * @return The gps Dop value of the camera when the image was captured,
+     * @return The GPS Dop value of the camera when the image was captured,
      *         or {@code null} if not found
      * @since xxx
      */
@@ -533,9 +533,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps Dop value of the given EXIF GPS directory.
+     * Returns the GPS Dop value of the given EXIF GPS directory.
      * @param dirGps The EXIF GPS directory
-     * @return The gps Dop value of the camera when the image was captured,
+     * @return The GPS Dop value of the camera when the image was captured,
      *         or {@code null} if missing or if {@code dirGps} is null
      * @since xxx
      */
@@ -550,9 +550,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps datum value of the given JPEG file.
+     * Returns the GPS datum value of the given JPEG file.
      * @param filename The JPEG file to read
-     * @return The gps datum value of the camera when the image was captured,
+     * @return The GPS datum value of the camera when the image was captured,
      *         or {@code null} if not found
      * @since xxx
      */
@@ -568,9 +568,9 @@ public final class ExifReader {
     }
 
     /**
-     * Returns the gps datum value of the given EXIF GPS directory.
+     * Returns the GPS datum value of the given EXIF GPS directory.
      * @param dirGps The EXIF GPS directory
-     * @return The gps datum value of the camera when the image was captured,
+     * @return The GPS datum value of the camera when the image was captured,
      *         or {@code null} if missing or if {@code dirGps} is null
      * @since xxx
      */
@@ -585,9 +585,9 @@ public final class ExifReader {
     }
 
     /**
-     * Return the gps processing method of the given JPEG file.
+     * Return the GPS processing method of the given JPEG file.
      * @param filename The JPEG file to read
-     * @return The gps processing method. Possible values from the EXIF specs are:
+     * @return The GPS processing method. Possible values from the EXIF specs are:
      * <ul>
      * <li>GPS</li>
      * <li>QZSS</li>
@@ -615,9 +615,9 @@ public final class ExifReader {
     }
 
     /**
-     * Return the gps processing method of the given EXIF GPS directory.
+     * Return the GPS processing method of the given EXIF GPS directory.
      * @param dirGps The EXIF GPS directory
-     * @return The gps processing method. Possible values from the EXIF specs are:
+     * @return The GPS processing method. Possible values from the EXIF specs are:
      * <ul>
      * <li>GPS</li>
      * <li>QZSS</li>

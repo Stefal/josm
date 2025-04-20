@@ -366,9 +366,9 @@ public class ImageData implements Data {
     }
 
     /**
-     * Update the gps track direction of the image and trigger update.
+     * Update the GPS track direction of the image and trigger update.
      * @param img the image to update
-     * @param trackDirection the new gps track direction
+     * @param trackDirection the new GPS track direction
      * @since xxx
      */
     public void updateImageGpsTrack(ImageEntry img, double trackDirection) {
@@ -388,9 +388,9 @@ public class ImageData implements Data {
     }
 
     /**
-     * Update the image gps differential mode and trigger update.
+     * Update the image GPS differential mode and trigger update.
      * @param img the image to update
-     * @param gpsDiffMode the new gps differential mode
+     * @param gpsDiffMode the new GPS differential mode
      * @since xxx
      */
     public void updateImageGpsDiffMode(ImageEntry img, Integer gpsDiffMode) {
@@ -399,9 +399,9 @@ public class ImageData implements Data {
     }
 
     /**
-     * Update the image gps 2d/3d mode value and trigger update.
+     * Update the image GPS 2d/3d mode value and trigger update.
      * @param img the image to update
-     * @param gps2d3dMode the new 2d/3d gps mode
+     * @param gps2d3dMode the new 2d/3d GPS mode
      * @since xxx
      */
     public void updateImageGps2d3dMode(ImageEntry img, Integer gps2d3dMode) {
@@ -410,9 +410,9 @@ public class ImageData implements Data {
     }
 
     /**
-     * Update the image gps dop value and trigger update.
+     * Update the image GPS dop value and trigger update.
      * @param img the image to update
-     * @param exifGpsDop the new gps Dop value
+     * @param exifGpsDop the new GPS Dop value
      * @since xxx
      */
     public void updateImageExifGpsDop(ImageEntry img, Double exifGpsDop) {
@@ -421,7 +421,7 @@ public class ImageData implements Data {
     }
 
     /**
-     * Update the image gps datum and trigger update.
+     * Update the image GPS datum and trigger update.
      * @param img the image to update
      * @param exifGpsDatum the new datum string value
      * @since xxx
@@ -432,9 +432,9 @@ public class ImageData implements Data {
     }
 
     /**
-     * Update the image gps processing method and trigger update.
+     * Update the image GPS processing method and trigger update.
      * @param img the image to update
-     * @param exifGpsProcMethod the new gps processing method
+     * @param exifGpsProcMethod the new GPS processing method
      * @since xxx
      */
     public void updateImageExifGpsProcMethod(ImageEntry img, String exifGpsProcMethod) {

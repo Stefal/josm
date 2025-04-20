@@ -57,7 +57,7 @@ class ExifReaderTest {
     }
 
     /**
-     * Test reading gps date and time
+     * Test reading GPS date and time
      */
     @Test
     void testReadGpsDateTime() {
@@ -119,7 +119,7 @@ class ExifReaderTest {
     }
 
     /**
-     * Test gps track course extraction
+     * Test GPS track course extraction
      */
     @Test
     void testReadGpsTrack() {
@@ -127,7 +127,7 @@ class ExifReaderTest {
     }
 
     /**
-     * Test gps differential mode extraction
+     * Test GPS differential mode extraction
      */
     @Test
     void testReadGpsDiffmode() {
@@ -135,7 +135,7 @@ class ExifReaderTest {
     }
 
     /**
-     * Test gps DOP value extraction
+     * Test GPS DOP value extraction
      */
     @Test
     void testReadGpsDop() {
@@ -143,7 +143,7 @@ class ExifReaderTest {
     }
 
     /**
-     * Test Gps measure mode (2D/3D) extraction
+     * Test GPS measure mode (2D/3D) extraction
      */
     @Test
     void testReadGps2d3dMode() {
@@ -151,7 +151,7 @@ class ExifReaderTest {
     }
 
     /**
-     * Test Gps datum extraction
+     * Test GPS datum extraction
      */
     @Test
     void testReadGpsDatum() {
@@ -159,7 +159,7 @@ class ExifReaderTest {
     }
 
     /**
-     * Test Gps processing method extraction
+     * Test GPS processing method extraction
      */
     @Test
     void testReadGpsProcMethod() {

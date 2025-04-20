@@ -219,7 +219,7 @@ public interface IImageEntry<I extends IImageEntry<I>> {
     Double getElevation();
 
     /**
-     * Return the Gps Differential mode value. The differential mode value from the temporary
+     * Return the GPS Differential mode value. The differential mode value from the temporary
      * copy is returned if that copy exists. 
      * @return the fix mode value
      * @since xxx
@@ -227,7 +227,7 @@ public interface IImageEntry<I extends IImageEntry<I>> {
     Integer getGpsDiffMode();
 
     /**
-     * Return the Gps 2d/3d mode value. The 2d/3d mode value from the temporary
+     * Return the GPS 2d/3d mode value. The 2d/3d mode value from the temporary
      * copy is returned if that copy exists.
      * @return the 2d/3d mode value
      * @since xxx
@@ -235,25 +235,25 @@ public interface IImageEntry<I extends IImageEntry<I>> {
     Integer getGps2d3dMode();
 
     /**
-     * Return the gps Dop value. The gps Dop value from the temporary
+     * Return the GPS Dop value. The GPS Dop value from the temporary
      * copy is return if that copy exists.
-     * @return the gps dop value
+     * @return the GPS dop value
      * @since xxx
      */
     Double getExifGpsDop();
 
     /**
-     * Return the Gps datum value. The Gps datum value from the temporary
+     * Return the GPS datum value. The GPS datum value from the temporary
      * copy is return if that copy exists. 
-     * @return the gps datum value
+     * @return the GPS datum value
      * @since xxx
      */
     String getExifGpsDatum();
 
     /**
-     * Return the Gps processing method. The processing method value from the temporary
+     * Return the GPS processing method. The processing method value from the temporary
      * copy is return if that copy exists.
-     * @return the gps processing method
+     * @return the GPS processing method
      * @since xxx
      */
     String getExifGpsProcMethod();
@@ -266,9 +266,9 @@ public interface IImageEntry<I extends IImageEntry<I>> {
     Double getExifImgDir();
     
     /**
-     * Returns the image gps track direction. The gps track direction from the temporary
+     * Returns the image GPS track direction. The GPS track direction from the temporary
      * copy is returned if that copy exists.
-     * @return the image gps track direction angle
+     * @return the image GPS track direction angle
      * @since xxx
      */
     Double getExifGpsTrack();

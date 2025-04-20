@@ -60,13 +60,13 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     private Double speed;
     /** Elevation (altitude) in meters */
     private Double elevation;
-    /** Gps Differential mode */
+    /** GPS Differential mode */
     private Integer gpsDiffMode;
-    /** Gps Measure mode */
+    /** GPS Measure mode */
     private Integer gps2d3dMode;
-    /** Gps Datum */
+    /** GPS Datum */
     private String exifGpsDatum;
-    /** Gps processing method */
+    /** GPS processing method */
     private String exifGpsProcMethod;
     /** The time after correlation with a gpx track */
     private Instant gpsTime;
@@ -188,7 +188,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Return the Gps Differential mode value. The Gps Differential mode value from the temporary
+     * Return the GPS Differential mode value. The GPS Differential mode value from the temporary
      * copy is returned if that copy exists. 
      * @return the differential mode value
      * @since xxx
@@ -201,9 +201,9 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Return the Gps 2d or 3d mode value. The Gps mode value form the temporary
+     * Return the GPS 2d or 3d mode value. The GPS mode value form the temporary
      * copy is returned if that copy exists. 
-     * @return the Gps 2d/3d mode value
+     * @return the GPS 2d/3d mode value
      * @since xxx
      */
     @Override
@@ -214,7 +214,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Return the Gps Dop value. The Gps Dop value from the temporary
+     * Return the GPS Dop value. The GPS Dop value from the temporary
      * copy is returned if that copy exists. 
      * @return the Dop value
      * @since xxx
@@ -227,7 +227,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Return the exif Gps coordinates datum value.
+     * Return the exif GPS coordinates datum value.
      * @return The datum value
      * @since xxx
      */
@@ -239,7 +239,7 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Return the exif Gps processing method string
+     * Return the exif GPS processing method string
      * @return the processing method string
      * @since xxx
      */
@@ -451,8 +451,8 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Sets Gps Differential mode.
-     * @param gpsDiffMode Gps Differential mode
+     * Sets GPS Differential mode.
+     * @param gpsDiffMode GPS Differential mode
      * @since xxx
      */
     @Override
@@ -461,8 +461,8 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Sets Gps 2d/3d mode.
-     * @param gps2d3dMode Gps 2d/3d mode value
+     * Sets GPS 2d/3d mode.
+     * @param gps2d3dMode GPS 2d/3d mode value
      * @since xxx
      */
     @Override
@@ -471,8 +471,8 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Sets Gps Dop value.
-     * @param exifGpsDop Gps Dop value
+     * Sets GPS Dop value.
+     * @param exifGpsDop GPS Dop value
      * @since xxx
      */
     @Override
@@ -481,8 +481,8 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Sets the Gps Datum.
-     * @param exifGpsDatum Gps Datum
+     * Sets the GPS Datum.
+     * @param exifGpsDatum GPS Datum
      * @since xxx
      */
     @Override
@@ -491,8 +491,8 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Sets the Gps Processing Method.
-     * @param exifGpsProcMethod Gps Processing Method
+     * Sets the GPS Processing Method.
+     * @param exifGpsProcMethod GPS Processing Method
      * @since xxx
      */
     @Override
@@ -568,8 +568,8 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
 
     /**
-     * Sets the exif gps track (move direction angle)
-     * @param exifGpsTrack the exif gps track angle
+     * Sets the exif GPS track (move direction angle)
+     * @param exifGpsTrack the exif GPS track angle
      * @since xxx
      */
     @Override

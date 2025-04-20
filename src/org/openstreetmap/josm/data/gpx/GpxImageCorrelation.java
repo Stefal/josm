@@ -344,7 +344,7 @@ public final class GpxImageCorrelation {
         Double prevGpsDop = null;
         Double prevGpsTrack = null;
         String prevGpsFixMode = null;
-        //list of differential gps mode
+        //list of differential GPS mode
         //TODO move these lists in Gpx.Constants?
         final List<String> diffMode = Arrays.asList("dgps", "float rtk", "rtk");
         final List<String> positioningModes = Arrays.asList("none", "manual", "estimated", "2d", "3d", "dgps", "float rtk", "rtk");
@@ -474,7 +474,7 @@ public final class GpxImageCorrelation {
                         }
                     }
 
-                    // Add Exif GpsDop with interpolated gps dop value
+                    // Add Exif GpsDop with interpolated GPS dop value
                     if (curGpsDop != null && prevGpsDop != null) {
                         Double interpolatedValue = prevGpsDop + (curGpsDop - prevGpsDop) * timeDiff;
                         curTmp.setExifGpsDop(Math.round(interpolatedValue*100)/100.0);

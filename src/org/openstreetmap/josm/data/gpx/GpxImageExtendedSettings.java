@@ -12,8 +12,8 @@ public class GpxImageExtendedSettings {
     
     /**
      * Construcs a new {@code GpxImageExtendedSettings}.
-     * @param setImageGpsDatum determines if images Gps datum must be set
-     * @param imageGpsDatum determines the gps coordinates datum value to be set
+     * @param setImageGpsDatum determines if images GPS datum must be set
+     * @param imageGpsDatum determines the GPS coordinates datum value to be set
      */
     public GpxImageExtendedSettings(
         boolean setImageGpsDatum, String imageGpsDatum) {
@@ -22,15 +22,15 @@ public class GpxImageExtendedSettings {
         }
     
     /**
-     * Determines if image gps datum must be set
-     * @return if the Gps datum must be set
+     * Determines if image GPS datum must be set
+     * @return if the GPS datum must be set
      */
     public boolean isSetImageGpsDatum() {
         return setImageGpsDatum;
     }
     
     /**
-     * Return the gps coordinates datum code.
+     * Return the GPS coordinates datum code.
      * @return the datum code
      */
     public String getImageGpsDatum() {
