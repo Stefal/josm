@@ -235,9 +235,9 @@ public interface IImageEntry<I extends IImageEntry<I>> {
     Integer getGps2d3dMode();
 
     /**
-     * Return the GPS Dop value. The GPS Dop value from the temporary
+     * Return the GPS DOP value. The GPS DOP value from the temporary
      * copy is return if that copy exists.
-     * @return the GPS dop value
+     * @return the GPS DOP value
      * @since xxx
      */
     Double getExifGpsDop();

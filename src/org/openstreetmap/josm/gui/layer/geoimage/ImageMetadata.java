@@ -156,8 +156,8 @@ public interface ImageMetadata {
     Integer getGps2d3dMode();
 
     /**
-     * Get the exif GPS Dop value.
-     * @return The image GPS dop value
+     * Get the exif GPS DOP value.
+     * @return The image GPS DOP value
      * @since xxx
      */
     Double getExifGpsDop();
@@ -268,8 +268,8 @@ public interface ImageMetadata {
     void setExifHPosErr(Double exifHPosErr);
 
     /**
-     * Sets the exif GPS Dop value.
-     * @param exifGpsDop the exif GPS dop value
+     * Sets the exif GPS DOP value.
+     * @param exifGpsDop the exif GPS DOP value
      * @since xxx
      */
     void setExifGpsDop(Double exifGpsDop);

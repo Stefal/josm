@@ -474,7 +474,7 @@ public final class GpxImageCorrelation {
                         }
                     }
 
-                    // Add Exif GpsDop with interpolated GPS dop value
+                    // Add Exif GpsDop with interpolated GPS DOP value
                     if (curGpsDop != null && prevGpsDop != null) {
                         Double interpolatedValue = prevGpsDop + (curGpsDop - prevGpsDop) * timeDiff;
                         curTmp.setExifGpsDop(Math.round(interpolatedValue*100)/100.0);
