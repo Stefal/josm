@@ -1047,7 +1047,7 @@ public final class ImageViewerDialog extends ToggleDialog implements LayerChange
                 osd.append(tr("\nDirection {0}\u00b0", Math.round(entry.getExifImgDir())));
             }
             if (entry.getExifGpsTrack() != null) {
-                osd.append(tr("\nGps direction: {0}\u00b0", Math.round(entry.getExifGpsTrack())));
+                osd.append(tr("\nGPS direction: {0}\u00b0", Math.round(entry.getExifGpsTrack())));
             }
             if (entry.getExifHPosErr() != null) {
                 osd.append(tr("\nHpos errror: {0}m", entry.getExifHPosErr()));
