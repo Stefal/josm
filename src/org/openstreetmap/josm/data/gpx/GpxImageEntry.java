@@ -355,7 +355,8 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
     }
     
     /**
-     * Convenient way to determine if this entry has a EXIF GPS track angle value, without the cost of building a defensive copy.
+     * Convenient way to determine if this entry has a EXIF GPS track angle value,
+     * without the cost of building a defensive copy.
      * @return {@code true} if this entry has a EXIF track angle value
      * @since xxx
      */
@@ -366,8 +367,9 @@ public class GpxImageEntry implements Comparable<GpxImageEntry>, IQuadBucketType
         return exifGpsTrack;
     }
 
-     /**
-     * Convenient way to determine if this entry has a EXIF GPS horizontal positionning error value, without the cost of building a defensive copy.
+    /**
+     * Convenient way to determine if this entry has a EXIF GPS horizontal positionning error value,
+     * without the cost of building a defensive copy.
      * @return {@code true} if this entry has a EXIF GPS horizontal positionning error value
      * @since xxx
      */

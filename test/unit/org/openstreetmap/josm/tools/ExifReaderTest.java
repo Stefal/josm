@@ -131,7 +131,7 @@ class ExifReaderTest {
      */
     @Test
     void testReadGpsDiffmode() {
-        assertEquals(Integer.valueOf(1),ExifReader.readGpsDiffMode(positionErrorSampleFile));
+        assertEquals(Integer.valueOf(1), ExifReader.readGpsDiffMode(positionErrorSampleFile));
     }
 
     /**
