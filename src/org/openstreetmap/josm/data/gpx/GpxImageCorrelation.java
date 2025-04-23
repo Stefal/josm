@@ -214,12 +214,12 @@ public final class GpxImageCorrelation {
     static Double getHPosErr(WayPoint wp) {
         if (wp != null) {
             if (wp.attr.get(GpxConstants.PT_STD_HDEV) instanceof Float) {
-                Float hposerr = (Float)wp.attr.get(GpxConstants.PT_STD_HDEV);
+                Float hposerr = (Float) wp.attr.get(GpxConstants.PT_STD_HDEV);
                 if (hposerr != null) {
                     return hposerr.doubleValue();
                 }
             } else if (wp.attr.get(GpxConstants.PT_STD_HDEV) instanceof Double) {               
-                Double hposerr = (Double)wp.attr.get(GpxConstants.PT_STD_HDEV);
+                Double hposerr = (Double) wp.attr.get(GpxConstants.PT_STD_HDEV);
                 if (hposerr != null) {
                     return hposerr;
                 }
@@ -232,18 +232,18 @@ public final class GpxImageCorrelation {
         if (wp != null) {
             if (wp.attr.get(GpxConstants.PT_PDOP) != null) {
                 if (wp.attr.get(GpxConstants.PT_PDOP) instanceof Float) {
-                    Float pdopvalue = (Float)wp.attr.get(GpxConstants.PT_PDOP);
+                    Float pdopvalue = (Float) wp.attr.get(GpxConstants.PT_PDOP);
                     return pdopvalue.doubleValue();
                 } else if (wp.attr.get(GpxConstants.PT_PDOP) instanceof Double) {
-                    Double pdopvalue = (Double)wp.attr.get(GpxConstants.PT_PDOP);
+                    Double pdopvalue = (Double) wp.attr.get(GpxConstants.PT_PDOP);
                     return pdopvalue.doubleValue();
                 }
             } else if (wp.attr.get(GpxConstants.PT_HDOP) != null) {
                 if (wp.attr.get(GpxConstants.PT_HDOP) instanceof Float) {
-                    Float hdopvalue = (Float)wp.attr.get(GpxConstants.PT_HDOP);
+                    Float hdopvalue = (Float) wp.attr.get(GpxConstants.PT_HDOP);
                     return hdopvalue.doubleValue();
                 } else if (wp.attr.get(GpxConstants.PT_HDOP) instanceof Double) {
-                    Double hdopvalue = (Double)wp.attr.get(GpxConstants.PT_HDOP);
+                    Double hdopvalue = (Double) wp.attr.get(GpxConstants.PT_HDOP);
                     return hdopvalue.doubleValue();
                 }
             }
