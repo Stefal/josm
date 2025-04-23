@@ -193,8 +193,8 @@ public interface GpxConstants {
      * Ordered list of all possible waypoint keys.
      */
     List<String> WPT_KEYS = Collections.unmodifiableList(Arrays.asList(PT_ELE, PT_TIME, PT_MAGVAR, PT_GEOIDHEIGHT,
-            GPX_NAME, GPX_CMT, GPX_DESC, GPX_SRC, META_LINKS, PT_SYM, PT_TYPE,
-            PT_FIX, PT_SAT, PT_HDOP, PT_VDOP, PT_PDOP, PT_AGEOFDGPSDATA, PT_DGPSID, PT_STD_HDEV, PT_STD_VDEV));
+            GPX_NAME, GPX_CMT, GPX_DESC, GPX_SRC, META_LINKS, PT_SYM, PT_TYPE, PT_FIX, PT_SAT, PT_COURSE,
+            PT_HDOP, PT_VDOP, PT_PDOP, PT_AGEOFDGPSDATA, PT_DGPSID, PT_STD_HDEV, PT_STD_VDEV));
 
     /**
      * Ordered list of all possible route and track keys.
