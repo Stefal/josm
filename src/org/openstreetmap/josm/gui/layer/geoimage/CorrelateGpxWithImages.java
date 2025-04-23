@@ -53,6 +53,7 @@ import org.openstreetmap.josm.data.gpx.GpxData.GpxDataChangeListener;
 import org.openstreetmap.josm.data.gpx.GpxDataContainer;
 import org.openstreetmap.josm.data.gpx.GpxImageCorrelation;
 import org.openstreetmap.josm.data.gpx.GpxImageCorrelationSettings;
+import org.openstreetmap.josm.data.gpx.GpxImageExtendedSettings;
 import org.openstreetmap.josm.data.gpx.GpxTimeOffset;
 import org.openstreetmap.josm.data.gpx.GpxTimezone;
 import org.openstreetmap.josm.data.gpx.WayPoint;
@@ -168,6 +169,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
                 Config.getPref().put("geoimage.timezone", timezone.formatTimezone());
                 Config.getPref().put("geoimage.delta", delta.formatOffset());
                 Config.getPref().putBoolean("geoimage.showThumbs", yLayer.useThumbs);
+                Config.getPref().put("geoimage.datum", tfDatum.getText());
 
                 yLayer.useThumbs = cbShowThumbs.isSelected();
                 yLayer.startLoadThumbs();
@@ -246,6 +248,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
     private ExtendedDialog syncDialog;
     private JPanel outerPanel;
+    private JPanel expertPanel;
     private JosmComboBox<GpxDataWrapper> cbGpx;
     private JButton buttonSupport;
     private JosmTextField tfTimezone;
@@ -253,9 +256,14 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
     private JCheckBox cbExifImg;
     private JCheckBox cbTaggedImg;
     private JCheckBox cbShowThumbs;
+    private JSeparator sepExtendedTags;
+    private JLabel labelExtTags;
+    private JLabel labelDatum;
     private JLabel statusBarText;
     private JSeparator sepDirectionPosition;
     private ImageDirectionPositionPanel pDirectionPosition;
+    private JCheckBox cbAddGpsDatum;
+    private JosmTextField tfDatum;
 
     // remember the last number of matched photos
     private int lastNumMatched;
@@ -472,6 +480,11 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         }
     }
 
+    static String loadGpsDatum() {
+        String gpsDatum = Config.getPref().get("geoimage.datum", "WGS-84");
+        return gpsDatum;
+    }
+
     @Override
     public void actionPerformed(ActionEvent ae) {
         NoGpxDataWrapper nogdw = new NoGpxDataWrapper();
@@ -619,6 +632,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         gbc.gridy = y++;
         panelTf.add(cbShowThumbs, gbc);
 
+        //Image direction and position offset GUI
         gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
         sepDirectionPosition = new JSeparator(SwingConstants.HORIZONTAL);
         gbc.gridy = y++;
@@ -630,6 +644,51 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         pDirectionPosition = ImageDirectionPositionPanel.forGpxTrace();
         panelTf.add(pDirectionPosition, gbc);
 
+        //Extended tags GUI panel
+        expertPanel = new JPanel(new GridBagLayout());
+        gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
+        sepExtendedTags = new JSeparator(SwingConstants.HORIZONTAL);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        expertPanel.add(sepExtendedTags, gbc);
+
+        labelExtTags = new JLabel(tr("Extended tags"));
+        cbAddGpsDatum = new JCheckBox(tr("Set datum for images coordinates"));
+        cbAddGpsDatum.addActionListener(e -> tfDatum.setEnabled(!tfDatum.isEnabled()));
+
+        labelDatum = new JLabel(tr("Datum: "));
+        //TODO An AutoCompComboBox would be nice to list the recent datum values. I don't have the skill to add it.
+        tfDatum = new JosmTextField(loadGpsDatum(), 8);
+        tfDatum.setToolTipText(tr("<html>Enter the datum for your images coordinates. Default value is WGS-84.<br>" + 
+                                "For RTK it could be your local CRS epsg code.<br>(e.g. EPSG:9782 for France mainland.)</html>"));
+        tfDatum.setEnabled(false);
+
+        gbc = GBC.eol();
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        expertPanel.add(labelExtTags, gbc);
+
+        gbc = GBC.eol();
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        expertPanel.add(cbAddGpsDatum, gbc);
+
+        //TODO move this line a little more to the right 
+        gbc = GBC.std();
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        expertPanel.add(labelDatum);
+
+        gbc = GBC.eol();
+        gbc.gridx = 2;
+        gbc.gridy = 3;
+        expertPanel.add(tfDatum, gbc);
+
+        //Add expertPanel to panelTf
+        gbc = GBC.eol().fill(GridBagConstraints.HORIZONTAL).insets(0, 12, 0, 0);
+        gbc.gridy = y++;
+        panelTf.add(expertPanel, gbc);
+        
         final JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         statusPanel.setBorder(BorderFactory.createLoweredBevelBorder());
         statusBarText = new JLabel(" ");
@@ -651,6 +710,8 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         tfOffset.getDocument().addDocumentListener(statusBarUpdater);
         cbExifImg.addItemListener(statusBarUpdaterWithRepaint);
         cbTaggedImg.addItemListener(statusBarUpdaterWithRepaint);
+        cbAddGpsDatum.addItemListener(statusBarUpdaterWithRepaint);
+        tfDatum.getDocument().addDocumentListener(statusBarUpdater);
         pDirectionPosition.addChangeListenerOnComponents(statusBarUpdaterWithRepaint);
         pDirectionPosition.addItemListenerOnComponents(statusBarUpdaterWithRepaint);
 
@@ -678,6 +739,12 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         }
     }
 
+    public GpxImageExtendedSettings getSettings() {
+        return new GpxImageExtendedSettings(
+            cbAddGpsDatum.isSelected(),
+            tfDatum.getText());
+    }
+
     @Override
     public void expertChanged(boolean isExpert) {
         if (buttonSupport != null) {
@@ -688,6 +755,9 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
         }
         if (pDirectionPosition != null) {
             pDirectionPosition.setVisible(isExpert);
+        }
+        if (expertPanel != null) {
+            expertPanel.setVisible(isExpert);
         }
         if (syncDialog != null) {
             syncDialog.pack();
@@ -786,7 +856,8 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
             final long offsetMs = ((long) (timezone.getHours() * TimeUnit.HOURS.toMillis(1))) + delta.getMilliseconds(); // in milliseconds
             lastNumMatched = GpxImageCorrelation.matchGpxTrack(dateImgLst, selGpx.data,
                     pDirectionPosition.isVisible() ?
-                            new GpxImageCorrelationSettings(offsetMs, forceTags, pDirectionPosition.getSettings()) :
+                            new GpxImageCorrelationSettings(offsetMs, forceTags, pDirectionPosition.getSettings(),
+                                                            new GpxImageExtendedSettings(cbAddGpsDatum.isSelected(), tfDatum.getText())) :
                             new GpxImageCorrelationSettings(offsetMs, forceTags));
 
             return trn("<html>Matched <b>{0}</b> of <b>{1}</b> photo to GPX track.</html>",
