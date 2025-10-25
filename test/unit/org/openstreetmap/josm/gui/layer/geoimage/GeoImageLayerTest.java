@@ -50,7 +50,7 @@ class GeoImageLayerTest {
      * Test that {@link GeoImageLayer#getSortedImgList} filters images without ExifGpsTime
      */
     @Test
-    void testMissingGPSTimeStamp(){
+    void testMissingGPSTimeStamp() {
         ImageEntry i1, i2;
         i1 = new ImageEntry();
         i1.setExifGpsTime(DateUtils.parseInstant("2016:01:03 12:00:00"));
@@ -58,7 +58,7 @@ class GeoImageLayerTest {
         i2.setExifTime(DateUtils.parseInstant("2016:01:03 12:00:01"));
 
         GeoImageLayer geoGpsImageLayer = new GeoImageLayer(Arrays.asList(i1, i2), null);
-        assertEquals(1, geoGpsImageLayer.getSortedImgList(false, false, TimeSource.EXIFGPSTIME ).size());
+        assertEquals(1, geoGpsImageLayer.getSortedImgList(false, false, TimeSource.EXIFGPSTIME).size());
     }
 
 }
