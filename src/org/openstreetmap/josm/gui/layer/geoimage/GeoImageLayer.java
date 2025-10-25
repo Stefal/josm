@@ -987,8 +987,8 @@ public class GeoImageLayer extends AbstractModifiableLayer implements
                 .filter(timeSource == TimeSource.EXIFGPSTIME ? GpxImageEntry::hasExifGpsTime : GpxImageEntry::hasExifTime)
                 .filter(e -> e.getExifCoor() == null || exif)
                 .filter(e -> tagged || !e.isTagged() || e.getExifCoor() != null)
-                .sorted(timeSource == TimeSource.EXIFGPSTIME 
-                    ? Comparator.comparing(ImageEntry::getExifGpsInstant) 
+                .sorted(timeSource == TimeSource.EXIFGPSTIME
+                    ? Comparator.comparing(ImageEntry::getExifGpsInstant)
                     : Comparator.comparing(ImageEntry::getExifInstant))
                 .collect(toList());
     }
