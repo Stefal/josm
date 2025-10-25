@@ -977,14 +977,16 @@ public class GeoImageLayer extends AbstractModifiableLayer implements
      * Default setting is to return untagged images, but may be overwritten.
      * @param exif also returns images with exif-gps info
      * @param tagged also returns tagged images
+     * @param gpsTime use GPS Time if true, instead of Camera RTC Time
      * @return matching images
+     * @since xxx gpsTime was added
      */
-    List<ImageEntry> getSortedImgList(boolean exif, boolean tagged) {
+    List<ImageEntry> getSortedImgList(boolean exif, boolean tagged, boolean gpsTime) {
         return data.getImages().stream()
-                .filter(GpxImageEntry::hasExifTime)
+                .filter(gpsTime ? GpxImageEntry::hasExifGpsTime : GpxImageEntry::hasExifTime)
                 .filter(e -> e.getExifCoor() == null || exif)
                 .filter(e -> tagged || !e.isTagged() || e.getExifCoor() != null)
-                .sorted(Comparator.comparing(ImageEntry::getExifInstant))
+                .sorted(gpsTime ? Comparator.comparing(ImageEntry::getExifGpsInstant) : Comparator.comparing(ImageEntry::getExifInstant))
                 .collect(toList());
     }
 }
