@@ -551,9 +551,9 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
 
         JLabel labelPosition = new JLabel(tr("Override position for: "));
 
-        int numAll = yLayer.getSortedImgList(true, true, rbTimeFromGps.isSelected()).size();
-        int numExif = numAll - yLayer.getSortedImgList(false, true, rbTimeFromGps.isSelected()).size();
-        int numTagged = numAll - yLayer.getSortedImgList(true, false, rbTimeFromGps.isSelected()).size();
+        int numAll = yLayer.getSortedImgList(true, true, imgTimeSource).size();
+        int numExif = numAll - yLayer.getSortedImgList(false, true, imgTimeSource).size();
+        int numTagged = numAll - yLayer.getSortedImgList(true, false, imgTimeSource).size();
 
         cbExifImg = new JCheckBox(tr("Images with geo location in exif data ({0}/{1})", numExif, numAll));
         cbExifImg.setEnabled(numExif != 0);
@@ -1006,7 +1006,7 @@ public class CorrelateGpxWithImages extends AbstractAction implements ExpertMode
     }
 
     private List<ImageEntry> getSortedImgList() {
-        return yLayer.getSortedImgList(cbExifImg.isSelected(), cbTaggedImg.isSelected(), rbTimeFromGps.isSelected());
+        return yLayer.getSortedImgList(cbExifImg.isSelected(), cbTaggedImg.isSelected(), imgTimeSource);
     }
 
     private static GpxDataWrapper selectedGPX(boolean complain) {
